@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Settings"
+        android:icon="@drawable/settings"
+        android:id="@+id/settings"/>
+
+    <item
+        android:title="Terms"
+        android:icon="@drawable/terms"
+        android:id="@+id/terms"/>
+
+    <item
+        android:title="Licenses"
+        android:icon="@drawable/licence"
+        android:id="@+id/licenses"/>
+
+    <item
+        android:title="About Us"
+        android:icon="@drawable/about"
+        android:id="@+id/about"/>
+
+    <item
+        android:title="Log Out"
+        android:icon="@drawable/logout"
+        android:id="@+id/logOut"/>
+
+</menu>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:title="Profile"
+        android:icon="@drawable/profile"
+        android:id="@+id/profileFm"/>
+
+    <item
+        android:title="Find Donor"
+        android:icon="@drawable/donor_search"
+        android:id="@+id/donorFindFm"/>
+
+    <item
+        android:title="Request"
+        android:icon="@drawable/request"
+        android:id="@+id/requestFm"/>
+
+    <item
+        android:title="History"
+        android:icon="@drawable/history"
+        android:id="@+id/historyFm"/>
+</menu>

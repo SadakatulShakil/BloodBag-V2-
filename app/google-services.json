@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "418394393051",
+    "firebase_url": "https://blood-bagbb.firebaseio.com",
+    "project_id": "blood-bagbb",
+    "storage_bucket": "blood-bagbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418394393051:android:f18145db1360cdfdbf7ffe",
+        "android_client_info": {
+          "package_name": "com.example.bloodbagbb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418394393051-h6vs9fgnkavkjqs1k2pqja32n2hrkkng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloodbagbb",
+            "certificate_hash": "856ac796876c3f93b2df49f07d634973452e18f5"
+          }
+        },
+        {
+          "client_id": "418394393051-ito9i1bmtc133h0qrgc3qprh11utd9hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfWx579TGB6qU8gTmY25t1pPhCFjIg9Eg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418394393051-ito9i1bmtc133h0qrgc3qprh11utd9hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

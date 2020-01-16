@@ -1,0 +1,270 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/backgreoundtext"
+    tools:context=".Fragment.RequestFormFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/postTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/appBackGround"
+        android:paddingBottom="5dp"
+        android:text="Post"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cancelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/appBackGround"
+        android:paddingBottom="5dp"
+        android:text="Cancle"
+        android:drawablePadding="8dp"
+        android:drawableLeft="@drawable/back"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/red"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTV"/>
+
+    <RadioGroup
+        android:id="@+id/typeOfBloodNeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1">
+
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green"
+                android:padding="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Emergency"
+                android:textColor="@color/red" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green"
+                android:checked="true"
+                android:padding="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Regular"
+                android:textColor="@color/red" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/datePickerET1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/background_edittext"
+        android:clickable="true"
+        android:drawableRight="@drawable/calender"
+        android:drawablePadding="10dp"
+        android:focusable="false"
+        android:hint="Start Date"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/typeOfBloodNeed"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerET2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="To"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerET2"
+        app:layout_constraintStart_toEndOf="@+id/datePickerET1"
+        app:layout_constraintTop_toBottomOf="@+id/typeOfBloodNeed"/>
+
+    <EditText
+        android:id="@+id/datePickerET2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/background_edittext"
+        android:clickable="true"
+        android:drawableRight="@drawable/calender"
+        android:drawablePadding="10dp"
+        android:focusable="false"
+        android:hint="End Date"
+        android:importantForAutofill="no"
+        android:padding="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red"
+        android:textColorHint="@color/red"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeOfBloodNeed"/>
+
+    <TextView
+        android:id="@+id/demo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Expected Blood Group :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerET1" />
+
+
+    <AutoCompleteTextView
+        android:id="@+id/userBloodGroup"
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:drawableLeft="@drawable/drop"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="(e.g.A+)"
+        android:imeOptions="actionNext"
+        android:inputType="textAutoComplete"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/demo2"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerET2" />
+
+    <TextView
+        android:id="@+id/demo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Contact :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demo2"/>
+
+    <EditText
+        android:id="@+id/contactET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Enter the Contact"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionNext"
+        app:layout_constraintTop_toBottomOf="@+id/demo6"/>
+
+    <TextView
+        android:id="@+id/demo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="District :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactET" />
+
+    <AutoCompleteTextView
+        android:id="@+id/locationEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Enter the district"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionNext"
+        app:layout_constraintTop_toBottomOf="@+id/demo3" />
+
+    <TextView
+        android:id="@+id/demo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Area :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationEt"/>
+
+    <EditText
+        android:id="@+id/areaET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Enter the area"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionNext"
+        app:layout_constraintTop_toBottomOf="@+id/demo4"/>
+
+    <TextView
+        android:id="@+id/demo5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:text="Reason :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/areaET"/>
+
+    <EditText
+        android:id="@+id/descriptionET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:hint="Give the reason why need blood"
+        android:padding="10dp"
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionGo"
+        app:layout_constraintTop_toBottomOf="@+id/demo5"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

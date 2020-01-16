@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D1392D</color>
+    <color name="colorPrimaryDark">#E00D26</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="red">#D1392D</color>
+    <color name="appBackGround">#eeeeee</color>
+    <color name="textColor">#D1392D</color>
+    <color name="green">#008577</color>
+    <color name="my_spinner_text_color">#D1392D</color>
+</resources>
