@@ -108,7 +108,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp"
         android:backgroundTint="@color/red"
-        android:elevation="8dp"
+        android:elevation="10dp"
         android:src="@drawable/add"
         tools:targetApi="lollipop" />
 
