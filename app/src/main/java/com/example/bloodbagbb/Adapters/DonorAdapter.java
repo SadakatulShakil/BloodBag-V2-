@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> {
 
-        private Context context;
-        private ArrayList<User> userArrayList;
+    private Context context;
+    private ArrayList<User> userArrayList;
 
     public DonorAdapter(Context context, ArrayList<User> userArrayList) {
         this.context = context;
@@ -28,7 +28,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
     @Override
     public DonorAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.donor_list,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.donor_list, parent, false);
         return new viewHolder(v);
     }
 
@@ -55,6 +55,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
 
     public class viewHolder extends RecyclerView.ViewHolder {
         private TextView userBloodGroup, userName, userContact, userArea;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 

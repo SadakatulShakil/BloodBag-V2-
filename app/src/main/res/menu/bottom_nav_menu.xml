@@ -3,22 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:title="Profile"
+        android:id="@+id/profileFm"
         android:icon="@drawable/profile"
-        android:id="@+id/profileFm"/>
+        android:title="Profile" />
 
     <item
-        android:title="Find Donor"
+        android:id="@+id/donorFindFm"
         android:icon="@drawable/donor_search"
-        android:id="@+id/donorFindFm"/>
+        android:title="Find Donor" />
 
     <item
-        android:title="Request"
+        android:id="@+id/requestFm"
         android:icon="@drawable/request"
-        android:id="@+id/requestFm"/>
+        android:title="Request" />
 
     <item
-        android:title="History"
+        android:id="@+id/historyFm"
         android:icon="@drawable/history"
-        android:id="@+id/historyFm"/>
+        android:title="History" />
 </menu>

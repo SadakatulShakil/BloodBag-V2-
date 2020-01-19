@@ -19,10 +19,9 @@ public class RetrofitClient {
 
     public static Retrofit retrofit;
 
-    public static Retrofit getRetrofitClient(){
+    public static Retrofit getRetrofitClient() {
 
-        if(retrofit ==  null)
-        {
+        if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                     .client(getUnsafeOkHttpClient().build())
                     .addConverterFactory(GsonConverterFactory.create())
@@ -32,7 +31,7 @@ public class RetrofitClient {
         return retrofit;
     }
 
-    public static OkHttpClient.Builder getUnsafeOkHttpClient(){
+    public static OkHttpClient.Builder getUnsafeOkHttpClient() {
         try {
             // Create a trust manager that does not validate certificate chains
             final TrustManager[] trustAllCerts = new TrustManager[]{

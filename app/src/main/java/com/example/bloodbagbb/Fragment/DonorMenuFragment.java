@@ -1,4 +1,5 @@
 package com.example.bloodbagbb.Fragment;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,19 +51,21 @@ public class DonorMenuFragment extends Fragment {
         super.onAttach(context);
         this.context = context;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_donor_menu, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         initView(view);
 
-        if (getActivity() != null){
+        if (getActivity() != null) {
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         }
 
@@ -78,7 +81,7 @@ public class DonorMenuFragment extends Fragment {
             initBottomNavigation(bucketFragment);
         }*/
         initBottomNavigation();
-         initNavigationViewDrawer();
+        initNavigationViewDrawer();
 
 
         getChildFragmentManager().beginTransaction()
@@ -90,24 +93,20 @@ public class DonorMenuFragment extends Fragment {
     private void initBottomNavigation(final String bucketFragment) {
 
 
-                Fragment selectedFragment = null;
-                if(bucketFragment.equals("profile")){
-                    selectedFragment =new ProfileFragment();
-                }
-                else if(bucketFragment.equals("findDonor")){
-                    selectedFragment =new FindDonorFragment();
-                }
-                else if(bucketFragment.equals("request")){
-                    selectedFragment =new ForRequestFragment();
-                }
-                else if(bucketFragment.equals("history")){
-                    selectedFragment =new DonationHistoryFragment();
-                }
-                    FragmentManager fm = getChildFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragmentContainer,selectedFragment)
-                            .commit();
-
+        Fragment selectedFragment = null;
+        if (bucketFragment.equals("profile")) {
+            selectedFragment = new ProfileFragment();
+        } else if (bucketFragment.equals("findDonor")) {
+            selectedFragment = new FindDonorFragment();
+        } else if (bucketFragment.equals("request")) {
+            selectedFragment = new ForRequestFragment();
+        } else if (bucketFragment.equals("history")) {
+            selectedFragment = new DonationHistoryFragment();
+        }
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragmentContainer, selectedFragment)
+                .commit();
 
 
     }
@@ -117,19 +116,19 @@ public class DonorMenuFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch ((item.getItemId())){
+                switch ((item.getItemId())) {
 
                     case R.id.settings:
-                        Toast.makeText(context,"Settings Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Settings Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.terms:
-                        Toast.makeText(context,"Terms Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Terms Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.licenses:
-                        Toast.makeText(context,"Licenses Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Licenses Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.about:
-                        Toast.makeText(context,"About Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "About Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.logOut:
                         FirebaseAuth.getInstance().signOut();
@@ -146,6 +145,7 @@ public class DonorMenuFragment extends Fragment {
         });
 
     }
+
     private void initBottomNavigation() {
 
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -153,21 +153,21 @@ public class DonorMenuFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 Fragment selectedFragment = null;
-                switch(item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.profileFm:
-                        selectedFragment =new ProfileFragment();
+                        selectedFragment = new ProfileFragment();
                         bucketFragment = "profile";
                         break;
                     case R.id.donorFindFm:
-                        selectedFragment =new FindDonorFragment();
+                        selectedFragment = new FindDonorFragment();
                         bucketFragment = "findDonor";
                         break;
                     case R.id.requestFm:
-                        selectedFragment =new ForRequestFragment();
+                        selectedFragment = new ForRequestFragment();
                         bucketFragment = "request";
                         break;
                     case R.id.historyFm:
-                        selectedFragment =new DonationHistoryFragment();
+                        selectedFragment = new DonationHistoryFragment();
                         bucketFragment = "history";
                         break;
 
@@ -177,7 +177,7 @@ public class DonorMenuFragment extends Fragment {
                 if (selectedFragment != null) {
                     FragmentManager fm = getChildFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragmentContainer,selectedFragment)
+                    ft.replace(R.id.fragmentContainer, selectedFragment)
                             .commit();
                 }
                 return true;

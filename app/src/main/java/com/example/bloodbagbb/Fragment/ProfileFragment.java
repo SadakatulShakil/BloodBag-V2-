@@ -33,8 +33,9 @@ public class ProfileFragment extends Fragment {
     FirebaseUser firebaseUser;
     private User user;
 
-    public static final String TAG ="ProfileFragment";
-    TextView userNameTV, userBloodGrioupTV,userContactTV;
+    public static final String TAG = "ProfileFragment";
+    TextView userNameTV, userBloodGrioupTV, userContactTV;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -72,9 +73,9 @@ public class ProfileFragment extends Fragment {
         donorRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     user = dataSnapshot.getValue(User.class);
-                    Log.d(TAG, "onDataChange: "+ user.toString());
+                    Log.d(TAG, "onDataChange: " + user.toString());
 
                     userNameTV.setText(user.getName());
                     userBloodGrioupTV.setText(user.getBloodGroup());

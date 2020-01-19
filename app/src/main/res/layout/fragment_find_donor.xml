@@ -35,15 +35,16 @@
             android:id="@+id/filterBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:padding="6dp"
             android:layout_gravity="end"
             android:layout_margin="5dp"
-            android:text="filter"
-            android:drawableRight="@drawable/drop"
             android:layout_weight="1"
+            android:background="@drawable/background_edittext"
+            android:drawableRight="@drawable/drop"
+            android:drawablePadding="5dp"
+            android:padding="6dp"
+            android:text="filter"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red"/>
+            android:textColor="@color/red" />
 
     </LinearLayout>
 
@@ -68,11 +69,11 @@
         android:layout_height="0dp"
         android:layout_margin="5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/demoRvText"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/donor_list"
-        tools:itemCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demoRvText"
+        tools:itemCount="4"
+        tools:listitem="@layout/donor_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

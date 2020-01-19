@@ -54,13 +54,15 @@ public class RequestFormFragment extends Fragment {
     private RadioGroup rgType;
     String postingTime;
     private EditText pickDate1, pickDate2, userArea, description, number;
-    private AutoCompleteTextView expectedBG, userDistrict;;
+    private AutoCompleteTextView expectedBG, userDistrict;
+    ;
     private TextView btCancel, btPost;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference requestRef;
     private BloodRequest bloodRequest;
     private FirebaseUser user;
     protected static TextView startDate, endDate;
+
     public RequestFormFragment() {
         // Required empty public constructor
     }
@@ -108,11 +110,11 @@ public class RequestFormFragment extends Fragment {
         });
 
         expectedBG.setThreshold(1);
-        expectedBG.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
+        expectedBG.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.bloodGroup)));
 
         userDistrict.setThreshold(1);
-        userDistrict.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
+        userDistrict.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
     }
 
@@ -121,7 +123,7 @@ public class RequestFormFragment extends Fragment {
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: "+ Utils.bucketFragment.toString());
+                Log.d(TAG, "onClick: " + Utils.bucketFragment.toString());
                 getActivity().onBackPressed();
             }
         });
@@ -138,14 +140,14 @@ public class RequestFormFragment extends Fragment {
                 String reason = description.getText().toString().trim();
 
 
-                    RadioButton rb = (RadioButton) rgType.findViewById(rgType.getCheckedRadioButtonId());
-                    String typeOfNeed = (String) rb.getText();
+                RadioButton rb = (RadioButton) rgType.findViewById(rgType.getCheckedRadioButtonId());
+                String typeOfNeed = (String) rb.getText();
 
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat myDateFormat = new SimpleDateFormat("hh:mm a");
                 postingTime = myDateFormat.format(calendar.getTime());
 
-                Toast.makeText(context, "Type :" + typeOfNeed + " " + "Time: " +postingTime, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Type :" + typeOfNeed + " " + "Time: " + postingTime, Toast.LENGTH_SHORT).show();
 
                 if (date1.isEmpty()) {
                     startDate.setError("Start date is required!");
@@ -163,7 +165,7 @@ public class RequestFormFragment extends Fragment {
                     expectedBG.requestFocus();
                     return;
                 }
-                if(contact.isEmpty()){
+                if (contact.isEmpty()) {
                     number.setError("contact is required!");
                     number.requestFocus();
                     return;
@@ -178,7 +180,7 @@ public class RequestFormFragment extends Fragment {
                     userArea.requestFocus();
                     return;
                 }
-                if(reason.isEmpty()){
+                if (reason.isEmpty()) {
                     description.setError("Give a reason is required!");
                     description.requestFocus();
                     return;
@@ -205,26 +207,26 @@ public class RequestFormFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         requestRef = FirebaseDatabase.getInstance().getReference("requests");
         String userId = user.getUid();
-        String pushId =requestRef.push().getKey();
+        String pushId = requestRef.push().getKey();
         bloodRequest = new BloodRequest(userId, pushId, date1, date2,
                 bGroup, contact, district, area, typeOfNeed, reason, postingTime);
 
-            requestRef.child(pushId).push().setValue(bloodRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(context, "Successful!", Toast.LENGTH_SHORT).show();
-                    }
+        requestRef.child(pushId).setValue(bloodRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "Successful!", Toast.LENGTH_SHORT).show();
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
-        }
+    }
 
     private void inItView(View view) {
         pickDate1 = view.findViewById(R.id.datePickerET1);
@@ -241,21 +243,21 @@ public class RequestFormFragment extends Fragment {
 
     //DatePickerMethods
     @SuppressLint("ValidFragment")
-    public static class DatePickerFragment extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener{
+    public static class DatePickerFragment extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState){
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog dpd = new DatePickerDialog(getActivity(),
-                    AlertDialog.THEME_HOLO_LIGHT,this,year,month,day);
-            return  dpd;
+                    AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
+            return dpd;
         }
 
-        public void onDateSet(DatePicker view, int year, int month, int day){
+        public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the chosen date
             startDate = getActivity().findViewById(R.id.datePickerET1);
            /* int actualMonth = month+1; // Because month index start from zero
@@ -279,21 +281,21 @@ public class RequestFormFragment extends Fragment {
 
     //DatePickerMethods
     @SuppressLint("ValidFragment")
-    public static class DatePickerFragment1 extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener{
+    public static class DatePickerFragment1 extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState){
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog dpd = new DatePickerDialog(getActivity(),
-                    AlertDialog.THEME_HOLO_LIGHT,this,year,month,day);
-            return  dpd;
+                    AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
+            return dpd;
         }
 
-        public void onDateSet(DatePicker view, int year, int month, int day){
+        public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the chosen date
             endDate = getActivity().findViewById(R.id.datePickerET2);
            /* int actualMonth = month+1; // Because month index start from zero

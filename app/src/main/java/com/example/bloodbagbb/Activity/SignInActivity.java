@@ -25,6 +25,7 @@ public class SignInActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private EditText emailET, passwordET;
     private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,34 +56,33 @@ public class SignInActivity extends AppCompatActivity {
         String email = emailET.getText().toString().trim();
         String password = passwordET.getText().toString().trim();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             Toast.makeText(SignInActivity.this, "Email is required!", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             Toast.makeText(SignInActivity.this, "Password is Required!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        signIn(email,password);
+        signIn(email, password);
     }
 
     private void signIn(String email, String password) {
         progressBar.setVisibility(View.VISIBLE);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithEmailAndPassword(email,password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             progressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(SignInActivity.this, FragmentMenuActivity.class);
                             startActivity(intent);
                             finish();
-                        }
-                        else{
+                        } else {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(SignInActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             return;

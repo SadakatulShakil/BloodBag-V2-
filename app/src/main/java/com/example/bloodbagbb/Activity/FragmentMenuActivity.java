@@ -1,4 +1,5 @@
 package com.example.bloodbagbb.Activity;
+
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -13,6 +14,7 @@ import com.example.bloodbagbb.R;
 public class FragmentMenuActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

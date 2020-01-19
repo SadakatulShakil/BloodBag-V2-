@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Settings"
+        android:id="@+id/settings"
         android:icon="@drawable/settings"
-        android:id="@+id/settings"/>
+        android:title="Settings" />
 
     <item
-        android:title="Terms"
+        android:id="@+id/terms"
         android:icon="@drawable/terms"
-        android:id="@+id/terms"/>
+        android:title="Terms" />
 
     <item
-        android:title="Licenses"
+        android:id="@+id/licenses"
         android:icon="@drawable/licence"
-        android:id="@+id/licenses"/>
+        android:title="Licenses" />
 
     <item
-        android:title="About Us"
+        android:id="@+id/about"
         android:icon="@drawable/about"
-        android:id="@+id/about"/>
+        android:title="About Us" />
 
     <item
-        android:title="Log Out"
+        android:id="@+id/logOut"
         android:icon="@drawable/logout"
-        android:id="@+id/logOut"/>
+        android:title="Log Out" />
 
 </menu>

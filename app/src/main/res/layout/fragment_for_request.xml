@@ -8,25 +8,96 @@
     tools:context=".Fragment.ForRequestFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/demoResult"
-        android:layout_width="wrap_content"
+    <AutoCompleteTextView
+        android:id="@+id/searchRequestBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="All Blood Request :"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/background_edittext"
+        android:drawableRight="@drawable/search"
+        android:drawablePadding="20dp"
+        android:ems="10"
+        android:hint="search through districts! e.g.Dhaka"
+        android:imeOptions="actionNext"
+        android:inputType="textAutoComplete"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchRequestBox"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/filterEmergency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_edittext"
+            android:drawableRight="@drawable/emergency"
+            android:padding="6dp"
+            android:text="Emergency"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/filterNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_edittext"
+            android:drawableRight="@drawable/normal"
+            android:padding="6dp"
+            android:text="Normal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/red" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/demoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/filterLayout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="All Blood Request :"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/filterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/background_edittext"
+            android:drawableRight="@drawable/drop"
+            android:drawablePadding="10dp"
+            android:padding="6dp"
+            android:text="All"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/red" />
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewForPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/demoLayout"
         tools:itemCount="9"
-        tools:listitem="@layout/donor_list"
-        android:layout_below="@+id/demoResult"/>
+        tools:listitem="@layout/request_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goToPostFAB"
@@ -35,9 +106,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:elevation="8dp"
         android:layout_margin="8dp"
         android:backgroundTint="@color/red"
+        android:elevation="8dp"
         android:src="@drawable/add"
         tools:targetApi="lollipop" />
 

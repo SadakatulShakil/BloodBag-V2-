@@ -26,7 +26,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
     @NonNull
     @Override
     public RequestAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_list,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_list, parent, false);
         return new RequestAdapter.viewHolder(v);
     }
 
@@ -57,6 +57,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
     public class viewHolder extends RecyclerView.ViewHolder {
 
         private TextView date1, date2, contact, area, reason, sampleBlood;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 

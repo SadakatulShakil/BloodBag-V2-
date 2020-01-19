@@ -13,11 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/arrow"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
@@ -71,8 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="353dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/demoText"
         tools:layout_editor_absoluteX="10dp">
@@ -81,8 +82,8 @@
             android:id="@+id/editInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:layout_below="@+id/view1"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -99,37 +100,37 @@
                 android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:padding="10dp"
-                android:drawableLeft="@drawable/useremail"
                 android:background="@drawable/background_edittext"
+                android:drawableLeft="@drawable/useremail"
                 android:drawablePadding="20dp"
-                android:imeOptions="actionNext"
+                android:ems="10"
                 android:hint="Enter your email"
-                android:inputType="textAutoComplete" />
+                android:imeOptions="actionNext"
+                android:inputType="textAutoComplete"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textStyle="bold"
                 android:padding="5dp"
-                android:textColor="@color/textColor"
                 android:text="User Password:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:padding="10dp"
                 android:background="@drawable/background_edittext"
                 android:drawableLeft="@drawable/userpass"
                 android:drawablePadding="20dp"
-                android:imeOptions="actionGo"
+                android:ems="10"
                 android:hint="Enter your Password"
-                android:inputType="textPassword" />
+                android:imeOptions="actionGo"
+                android:inputType="textPassword"
+                android:padding="10dp" />
 
         </LinearLayout>
 

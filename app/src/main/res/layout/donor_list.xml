@@ -26,8 +26,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
 
                 <RelativeLayout
                     android:id="@+id/one"
@@ -51,6 +51,7 @@
                         android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,9 +66,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Name :"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Name :"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/red" />
 
@@ -75,30 +76,30 @@
                             android:id="@+id/donorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Astronist Shakil "
-                            android:paddingLeft="5dp"
-                            android:gravity="center"
-                            android:layout_weight="1"
                             android:layout_marginLeft="8dp"
-                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:text="Astronist Shakil "
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/red"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginTop="8dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Contact :"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Contact :"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/red" />
 
@@ -106,30 +107,30 @@
                             android:id="@+id/donorContact"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="01767564737 "
-                            android:paddingLeft="5dp"
-                            android:gravity="center"
-                            android:layout_weight="1"
                             android:layout_marginLeft="8dp"
-                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:text="01767564737 "
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/red"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginTop="8dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Area :"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Area :"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="@color/red" />
 
@@ -137,14 +138,14 @@
                             android:id="@+id/donorArea"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jigatala "
-                            android:paddingLeft="5dp"
-                            android:gravity="center"
-                            android:layout_weight="1"
                             android:layout_marginLeft="8dp"
-                            android:textStyle="bold"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:text="Jigatala "
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/red" />
+                            android:textColor="@color/red"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>

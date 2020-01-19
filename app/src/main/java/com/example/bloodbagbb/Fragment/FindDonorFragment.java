@@ -37,7 +37,7 @@ import java.util.ArrayList;
  */
 public class FindDonorFragment extends Fragment {
 
-    public static final String TAG ="FindDonorFragment";
+    public static final String TAG = "FindDonorFragment";
     private AutoCompleteTextView bloodSearchBox;
     private TextView filterBlood;
     private Context context;
@@ -49,6 +49,7 @@ public class FindDonorFragment extends Fragment {
     DatabaseReference donorRef;
     private String bloodGroup;
     private String district;
+
     public FindDonorFragment() {
         // Required empty public constructor
     }
@@ -74,7 +75,7 @@ public class FindDonorFragment extends Fragment {
 
         userInfoList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        appUserAdapter = new DonorAdapter(context,userInfoList);
+        appUserAdapter = new DonorAdapter(context, userInfoList);
         recyclerView.setAdapter(appUserAdapter);
 
         RetrievedAllDonorData();
@@ -94,7 +95,7 @@ public class FindDonorFragment extends Fragment {
         });
 
         bloodSearchBox.setThreshold(1);
-        bloodSearchBox.setAdapter(new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,
+        bloodSearchBox.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
 
 
@@ -105,11 +106,10 @@ public class FindDonorFragment extends Fragment {
         bloodGroup = filterBlood.getText().toString().trim();
 
         district = bloodSearchBox.getText().toString().trim();
-        if(bloodGroup.equals("filter")){
+        if (bloodGroup.equals("filter")) {
             searchByDistrict(district);
-        }
-        else {
-            searchByDistrict(district,bloodGroup);
+        } else {
+            searchByDistrict(district, bloodGroup);
         }
 
     }
@@ -124,9 +124,9 @@ public class FindDonorFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userInfoList.clear();
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
-                    if(user.getBloodGroup().equals(bloodGroup)){
+                    if (user.getBloodGroup().equals(bloodGroup)) {
                         userInfoList.add(user);
                     }
                 }
@@ -151,7 +151,7 @@ public class FindDonorFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userInfoList.clear();
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
                     userInfoList.add(user);
                 }
@@ -172,7 +172,7 @@ public class FindDonorFragment extends Fragment {
         final AlertDialog.Builder alert = new AlertDialog.Builder(context);
         View dialogView = getLayoutInflater().inflate(R.layout.filter_blood_group, null);
 
-        final TextView  aPositive, aNegative, bPositive, bNegative, oPositive, oNegative, abPositive, abNegative;
+        final TextView aPositive, aNegative, bPositive, bNegative, oPositive, oNegative, abPositive, abNegative;
         final TextView cancelBt = dialogView.findViewById(R.id.btCancel);
 
         aPositive = dialogView.findViewById(R.id.aPossitive);
@@ -199,17 +199,17 @@ public class FindDonorFragment extends Fragment {
         aPositive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            alertDialog.dismiss();
-            filterBlood.setText("A+");
-             bloodGroup = filterBlood.getText().toString().trim();
+                alertDialog.dismiss();
+                filterBlood.setText("A+");
+                bloodGroup = filterBlood.getText().toString().trim();
 
-             district = bloodSearchBox.getText().toString().trim();
-            if (district.isEmpty()){
-                searchByBloodGroup(bloodGroup);
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
+                    searchByBloodGroup(bloodGroup);
 
-            }else {
-                searchByBloodGroup(district,bloodGroup);
-            }
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
+                }
 
             }
         });
@@ -222,11 +222,11 @@ public class FindDonorFragment extends Fragment {
                 String bloodGroup = filterBlood.getText().toString().trim();
 
                 String district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -237,14 +237,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B+");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -255,14 +255,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("B-");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -273,14 +273,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O+");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -291,14 +291,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("O-");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -309,14 +309,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB+");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -327,14 +327,14 @@ public class FindDonorFragment extends Fragment {
                 alertDialog.dismiss();
                 filterBlood.setText("AB-");
                 //do search
-                 bloodGroup = filterBlood.getText().toString().trim();
+                bloodGroup = filterBlood.getText().toString().trim();
 
-                 district = bloodSearchBox.getText().toString().trim();
-                if (district.isEmpty()){
+                district = bloodSearchBox.getText().toString().trim();
+                if (district.isEmpty()) {
                     searchByBloodGroup(bloodGroup);
 
-                }else {
-                    searchByBloodGroup(district,bloodGroup);
+                } else {
+                    searchByBloodGroup(district, bloodGroup);
                 }
 
             }
@@ -354,9 +354,9 @@ public class FindDonorFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userInfoList.clear();
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
-                    if(user.getDistrict().equals(district)){
+                    if (user.getDistrict().equals(district)) {
                         userInfoList.add(user);
                     }
 
@@ -383,7 +383,7 @@ public class FindDonorFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userInfoList.clear();
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
                     userInfoList.add(user);
                 }
@@ -405,7 +405,7 @@ public class FindDonorFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //userInfoList.clear();
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     User user = userSnapshot.getValue(User.class);
 
                     userInfoList.add(user);

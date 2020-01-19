@@ -16,28 +16,29 @@ public class MainActivity extends AppCompatActivity {
     private Button signInBtn;
     private TextView signUpBtn;
     FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth =FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
             finish();
             Intent intent = new Intent(getApplicationContext(), FragmentMenuActivity.class);
             startActivity(intent);
         }
         signInBtn = findViewById(R.id.signInPreview);
-       signUpBtn = findViewById(R.id.signUp);
+        signUpBtn = findViewById(R.id.signUp);
 
-       signInBtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-               startActivity(intent);
-           }
-       });
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override

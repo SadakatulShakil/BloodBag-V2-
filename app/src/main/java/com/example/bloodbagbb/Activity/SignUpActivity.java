@@ -1,4 +1,5 @@
 package com.example.bloodbagbb.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,11 +44,11 @@ public class SignUpActivity extends AppCompatActivity {
         intIt();
 
         bloodGroupET.setThreshold(1);
-        bloodGroupET.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+        bloodGroupET.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.bloodGroup)));
 
         districtET.setThreshold(1);
-        districtET.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+        districtET.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
 
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void beforeSignUp(){
+    private void beforeSignUp() {
         String nameId = nameET.getText().toString().trim();
         String emailId = emailET.getText().toString().trim();
         String bloodGroupId = bloodGroupET.getText().toString().trim();
@@ -135,10 +136,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUp(final String nameId, final String emailId,
                         final String contactId, final String districtId,
-                        final String areaId, final String bloodGroupId, String passwordId)
-                        {
+                        final String areaId, final String bloodGroupId, String passwordId) {
 
-                progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 
         firebaseAuth.createUserWithEmailAndPassword(emailId, passwordId)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -147,7 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             String userId = firebaseAuth.getCurrentUser().getUid();
-                            User user = new User(userId, nameId, emailId, contactId, districtId, areaId, bloodGroupId );
+                            User user = new User(userId, nameId, emailId, contactId, districtId, areaId, bloodGroupId);
                             DatabaseReference userRef = databaseReference.child("donor").child(userId);
                             userRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

@@ -24,7 +24,7 @@ public class BloodRequest {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bloodGroup = bloodGroup;
-        this.contact =contact;
+        this.contact = contact;
         this.district = district;
         this.area = area;
         this.type = type;
@@ -37,7 +37,7 @@ public class BloodRequest {
         this.startDate = startDate;
         this.endDate = endDate;
         this.bloodGroup = bloodGroup;
-        this.contact =contact;
+        this.contact = contact;
         this.district = district;
         this.area = area;
         this.type = type;
