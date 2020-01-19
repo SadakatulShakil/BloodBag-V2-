@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
@@ -72,6 +73,11 @@ public class ForRequestFragment extends Fragment {
         final FragmentManager fm = (getActivity()).getSupportFragmentManager();
 
         initViews(view);
+
+        requestSearchBox.setThreshold(1);
+        requestSearchBox.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.districts)));
+
 
         requestArrayList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));

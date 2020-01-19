@@ -53,9 +53,8 @@ public class RequestFormFragment extends Fragment {
     private Context context;
     private RadioGroup rgType;
     String postingTime;
-    private EditText pickDate1, pickDate2, userArea, description, number;
+    private EditText pickDate2, userArea, description, number;
     private AutoCompleteTextView expectedBG, userDistrict;
-    ;
     private TextView btCancel, btPost;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference requestRef;
@@ -88,16 +87,6 @@ public class RequestFormFragment extends Fragment {
 
         clickEvents();
 
-        pickDate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // create the datePickerFragment
-                AppCompatDialogFragment newFragment = new DatePickerFragment();
-
-                newFragment.show(fm, "datePicker");
-
-            }
-        });
         pickDate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +120,6 @@ public class RequestFormFragment extends Fragment {
         btPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String date1 = startDate.getText().toString().trim();
                 String date2 = endDate.getText().toString().trim();
                 String bGroup = expectedBG.getText().toString().trim();
                 String contact = number.getText().toString().trim();
@@ -149,11 +137,6 @@ public class RequestFormFragment extends Fragment {
 
                 Toast.makeText(context, "Type :" + typeOfNeed + " " + "Time: " + postingTime, Toast.LENGTH_SHORT).show();
 
-                if (date1.isEmpty()) {
-                    startDate.setError("Start date is required!");
-                    startDate.requestFocus();
-                    return;
-                }
 
                 if (date2.isEmpty()) {
                     endDate.setError("End date is required!");
@@ -186,9 +169,8 @@ public class RequestFormFragment extends Fragment {
                     return;
                 }
 
-                storeRequestData(date1, date2, bGroup, contact, district, area, typeOfNeed, reason, postingTime);
+                storeRequestData(date2, bGroup, contact, district, area, typeOfNeed, reason, postingTime);
 
-                startDate.setText("");
                 endDate.setText("");
                 expectedBG.setText("");
                 number.setText("");
@@ -199,16 +181,16 @@ public class RequestFormFragment extends Fragment {
         });
     }
 
-    private void storeRequestData(final String date1, final String date2,
-                                  final String bGroup, final String contact, final String district,
-                                  final String area, final String typeOfNeed, final String reason, final String postingTime) {
+    private void storeRequestData(final String date2, final String bGroup, final String contact,
+                                  final String district, final String area, final String typeOfNeed,
+                                  final String reason, final String postingTime) {
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         requestRef = FirebaseDatabase.getInstance().getReference("requests");
         String userId = user.getUid();
         String pushId = requestRef.push().getKey();
-        bloodRequest = new BloodRequest(userId, pushId, date1, date2,
+        bloodRequest = new BloodRequest(userId, pushId, date2,
                 bGroup, contact, district, area, typeOfNeed, reason, postingTime);
 
         requestRef.child(pushId).setValue(bloodRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -229,8 +211,7 @@ public class RequestFormFragment extends Fragment {
     }
 
     private void inItView(View view) {
-        pickDate1 = view.findViewById(R.id.datePickerET1);
-        pickDate2 = view.findViewById(R.id.datePickerET2);
+        pickDate2 = view.findViewById(R.id.dateET);
         expectedBG = view.findViewById(R.id.userBloodGroup);
         number = view.findViewById(R.id.contactET);
         userDistrict = view.findViewById(R.id.locationEt);
@@ -240,44 +221,6 @@ public class RequestFormFragment extends Fragment {
         btPost = view.findViewById(R.id.postTV);
         rgType = view.findViewById(R.id.typeOfBloodNeed);
     }
-
-    //DatePickerMethods
-    @SuppressLint("ValidFragment")
-    public static class DatePickerFragment extends AppCompatDialogFragment implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-            DatePickerDialog dpd = new DatePickerDialog(getActivity(),
-                    AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
-            return dpd;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the chosen date
-            startDate = getActivity().findViewById(R.id.datePickerET1);
-           /* int actualMonth = month+1; // Because month index start from zero
-            // Display the unformatted date to TextView
-            tvDate.setText("Year : " + year + ", Month : " + actualMonth + ", Day : " + day + "\n\n");*/
-
-            // Create a Date variable/object with user chosen date
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(0);
-            cal.set(year, month, day, 0, 0, 0);
-            Date chosenDate = cal.getTime();
-
-            // Format the date using style medium and UK locale
-            DateFormat df_medium_uk = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
-            String df_medium_uk_str = df_medium_uk.format(chosenDate);
-            // Display the formatted date
-            startDate.setText(df_medium_uk_str);
-        }
-    }
-    //End of DatePickerMethods
 
     //DatePickerMethods
     @SuppressLint("ValidFragment")
@@ -297,7 +240,7 @@ public class RequestFormFragment extends Fragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the chosen date
-            endDate = getActivity().findViewById(R.id.datePickerET2);
+            endDate = getActivity().findViewById(R.id.dateET);
            /* int actualMonth = month+1; // Because month index start from zero
             // Display the unformatted date to TextView
             tvDate.setText("Year : " + year + ", Month : " + actualMonth + ", Day : " + day + "\n\n");*/

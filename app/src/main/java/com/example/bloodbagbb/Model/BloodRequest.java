@@ -3,7 +3,6 @@ package com.example.bloodbagbb.Model;
 public class BloodRequest {
     private String userId;
     private String pushId;
-    private String startDate;
     private String endDate;
     private String bloodGroup;
     private String contact;
@@ -16,12 +15,11 @@ public class BloodRequest {
     public BloodRequest() {
     }
 
-    public BloodRequest(String userId, String pushId, String startDate,
-                        String endDate, String bloodGroup, String contact, String district,
+    public BloodRequest(String userId, String pushId, String endDate,
+                        String bloodGroup, String contact, String district,
                         String area, String type, String reason, String postingTime) {
         this.userId = userId;
         this.pushId = pushId;
-        this.startDate = startDate;
         this.endDate = endDate;
         this.bloodGroup = bloodGroup;
         this.contact = contact;
@@ -32,9 +30,9 @@ public class BloodRequest {
         this.postingTime = postingTime;
     }
 
-    public BloodRequest(String startDate, String endDate, String bloodGroup, String contact,
+    public BloodRequest(String endDate, String bloodGroup, String contact,
                         String district, String area, String type, String reason) {
-        this.startDate = startDate;
+
         this.endDate = endDate;
         this.bloodGroup = bloodGroup;
         this.contact = contact;
@@ -59,14 +57,6 @@ public class BloodRequest {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
     }
 
     public String getEndDate() {

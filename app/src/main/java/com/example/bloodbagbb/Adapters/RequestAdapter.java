@@ -34,14 +34,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
     public void onBindViewHolder(@NonNull RequestAdapter.viewHolder holder, int position) {
         final BloodRequest requestInfo = userRequestList.get(position);
 
-        String stDate = requestInfo.getStartDate();
         String enDate = requestInfo.getEndDate();
         String number = requestInfo.getContact();
         String home = requestInfo.getArea();
         String description = requestInfo.getReason();
         String sample = requestInfo.getBloodGroup();
 
-        holder.date1.setText(stDate);
         holder.date2.setText(enDate);
         holder.contact.setText(number);
         holder.area.setText(home);
@@ -60,8 +58,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-
-            date1 = itemView.findViewById(R.id.date1);
             date2 = itemView.findViewById(R.id.date2);
             sampleBlood = itemView.findViewById(R.id.bloodSample);
             contact = itemView.findViewById(R.id.patiantNumber);
