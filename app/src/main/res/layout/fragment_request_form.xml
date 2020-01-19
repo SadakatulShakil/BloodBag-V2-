@@ -16,9 +16,11 @@
         android:layout_margin="10dp"
         android:background="@color/appBackGround"
         android:paddingBottom="5dp"
+        android:drawablePadding="8dp"
         android:text="Post"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/red"
+        android:drawableRight="@drawable/post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/appBackGround"
-        android:drawableLeft="@drawable/back"
+        android:drawableLeft="@drawable/cancle"
         android:drawablePadding="8dp"
         android:paddingBottom="5dp"
         android:text="Cancle"
