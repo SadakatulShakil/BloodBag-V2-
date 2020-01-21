@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bloodbagbb.Model.History;
 import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -30,11 +33,14 @@ public class ProfileFragment extends Fragment {
     private Context context;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference donorRef;
+    private DatabaseReference historyRef;
     FirebaseUser firebaseUser;
     private User user;
+    private int listSize;
+    private ArrayList<History>historyArrayList;
 
     public static final String TAG = "ProfileFragment";
-    TextView userNameTV, userBloodGrioupTV, userContactTV;
+    private TextView userNameTV, userBloodGrioupTV, userContactTV, countingDonation;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -59,7 +65,7 @@ public class ProfileFragment extends Fragment {
         Log.d(TAG, "onViewCreated: started");
 
         initView(view);
-
+        historyArrayList = new ArrayList<>();
         retrievedData();
     }
 
@@ -68,8 +74,27 @@ public class ProfileFragment extends Fragment {
         firebaseUser = firebaseAuth.getCurrentUser();
         FirebaseDatabase fdb = FirebaseDatabase.getInstance();
         donorRef = fdb.getReference("donor");
+        historyRef = fdb.getReference("history");
         String userID = firebaseUser.getUid();
 
+        historyRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot childsnapshot : dataSnapshot.getChildren()){
+                    History historyInfo = childsnapshot.getValue(History.class);
+
+                    historyArrayList.add(historyInfo);
+                }
+                listSize = historyArrayList.size();
+                Log.d(TAG, "size: "+listSize);
+                countingDonation.setText(listSize + " times");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         donorRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,6 +121,7 @@ public class ProfileFragment extends Fragment {
         userNameTV = view.findViewById(R.id.userName);
         userBloodGrioupTV = view.findViewById(R.id.bloodGroup);
         userContactTV = view.findViewById(R.id.userContact);
+        countingDonation =view.findViewById(R.id.donationCount);
 
     }
 }
