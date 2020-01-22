@@ -119,6 +119,9 @@ public class DonorMenuFragment extends Fragment {
                 switch ((item.getItemId())) {
 
                     case R.id.settings:
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frameLayoutID, new SettingsFragment())
+                                .commit();
                         Toast.makeText(context, "Settings Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.terms:

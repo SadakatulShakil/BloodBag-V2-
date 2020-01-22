@@ -10,4 +10,5 @@
     <color name="textColor">#D1392D</color>
     <color name="green">#008577</color>
     <color name="my_spinner_text_color">#D1392D</color>
+    <color name="materialViewColor">#e0e0e0</color>
 </resources>
