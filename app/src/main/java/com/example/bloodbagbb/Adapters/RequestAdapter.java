@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbagbb.Model.BloodRequest;
 import com.example.bloodbagbb.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -39,7 +43,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
         String home = requestInfo.getArea();
         String description = requestInfo.getReason();
         String sample = requestInfo.getBloodGroup();
-
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(requestInfo.getUserId().equals(firebaseUser.getUid())){
+            holder.acceptBTN.setVisibility(View.GONE);
+            holder.declineBTN.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.declineBTN.setVisibility(View.GONE);
+            holder.acceptBTN.setVisibility(View.VISIBLE);
+        }
         holder.date2.setText(enDate);
         holder.contact.setText(number);
         holder.area.setText(home);
@@ -54,7 +66,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
 
     public class viewHolder extends RecyclerView.ViewHolder {
 
-        private TextView date1, date2, contact, area, reason, sampleBlood;
+        private TextView date2, contact, area, reason, sampleBlood;
+        private Button declineBTN, acceptBTN;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +76,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
             contact = itemView.findViewById(R.id.patiantNumber);
             area = itemView.findViewById(R.id.patiantArea);
             reason = itemView.findViewById(R.id.patiantReason);
+
+            declineBTN = itemView.findViewById(R.id.declineBT);
+            acceptBTN = itemView.findViewById(R.id.acceptBT);
         }
     }
 }
