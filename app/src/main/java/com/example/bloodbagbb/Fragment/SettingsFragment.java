@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bloodbagbb.R;
@@ -23,6 +24,7 @@ public class SettingsFragment extends Fragment {
 
     private Context context;
     private TextView viewProfileTV;
+    private ImageView backToParent;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -54,10 +56,20 @@ public class SettingsFragment extends Fragment {
                         .commit();
             }
         });
+
+        backToParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new DonorMenuFragment())
+                        .commit();
+            }
+        });
     }
 
     private void inItView(View view) {
 
         viewProfileTV = view.findViewById(R.id.profileEdit);
+        backToParent = view.findViewById(R.id.arrow);
     }
 }

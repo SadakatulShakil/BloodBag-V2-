@@ -96,6 +96,7 @@
                 android:drawableLeft="@drawable/username"
                 android:drawablePadding="20dp"
                 android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 android:text="Astronist Shakil"
                 android:padding="8dp" />
@@ -117,6 +118,7 @@
                 android:drawableLeft="@drawable/useremail"
                 android:drawablePadding="20dp"
                 android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 android:text="shakil.polock@gmail.com"
                 android:padding="8dp" />
@@ -138,9 +140,10 @@
                 android:drawableLeft="@drawable/drop"
                 android:drawablePadding="20dp"
                 android:ems="10"
+                android:padding="8dp"
                 android:text="A+"
-                android:textColor="@color/black"
-                android:padding="8dp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,6 +162,7 @@
                 android:drawableLeft="@drawable/district"
                 android:drawablePadding="20dp"
                 android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 android:text="Rangpur"
                 android:padding="8dp" />
@@ -182,6 +186,7 @@
                 android:ems="10"
                 android:textColor="@color/black"
                 android:text="Pirgachha"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:padding="8dp" />
 
             <TextView
@@ -201,6 +206,7 @@
                 android:drawableLeft="@drawable/contact"
                 android:drawablePadding="20dp"
                 android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 android:text="01751330394"
                 android:padding="8dp" />
