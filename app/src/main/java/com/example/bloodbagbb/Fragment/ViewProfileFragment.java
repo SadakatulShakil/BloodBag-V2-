@@ -12,20 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bloodbagbb.Activity.SignUpActivity;
 import com.example.bloodbagbb.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditProfileActivity extends Fragment {
+public class ViewProfileFragment extends Fragment {
 
     private Context context;
-    private Button btnUpdate;
+    private TextView btnEdit;
 
-    public EditProfileActivity() {
+    public ViewProfileFragment() {
         // Required empty public constructor
     }
 
@@ -38,7 +38,7 @@ public class EditProfileActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
+        return inflater.inflate(R.layout.fragment_view_profile, container, false);
     }
 
     @Override
@@ -47,18 +47,18 @@ public class EditProfileActivity extends Fragment {
 
         inItView(view);
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Successfully Updated!", Toast.LENGTH_LONG).show();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayoutID, new SettingsFragment())
+                        .replace(R.id.frameLayoutID, new EditProfileFragment())
                         .commit();
             }
         });
     }
 
     private void inItView(View view) {
-        btnUpdate = view.findViewById(R.id.upDateBTN);
+        btnEdit = view.findViewById(R.id.editBTN);
     }
 }
