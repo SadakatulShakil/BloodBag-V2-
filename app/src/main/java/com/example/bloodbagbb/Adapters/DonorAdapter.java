@@ -16,12 +16,17 @@ import java.util.ArrayList;
 
 public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(User userInfo);
+    }
     private Context context;
     private ArrayList<User> userArrayList;
+    private final OnItemClickListener clickListener;
 
-    public DonorAdapter(Context context, ArrayList<User> userArrayList) {
+    public DonorAdapter(Context context, ArrayList<User> userArrayList, OnItemClickListener clickListener) {
         this.context = context;
         this.userArrayList = userArrayList;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -39,13 +44,21 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
 
         String bg = donorInfo.getBloodGroup();
         String name = donorInfo.getName();
-        String contact = donorInfo.getContact();
+        final String contact = donorInfo.getContact();
         String area = donorInfo.getArea();
 
         holder.userBloodGroup.setText(bg);
         holder.userName.setText(name);
         holder.userContact.setText(contact);
         holder.userArea.setText(area);
+
+
+      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
     }
 
     @Override

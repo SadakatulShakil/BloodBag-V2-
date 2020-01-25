@@ -2,7 +2,9 @@ package com.example.bloodbagbb.Fragment;
 
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbagbb.Adapters.RequestAdapter;
 import com.example.bloodbagbb.Model.BloodRequest;
+import com.example.bloodbagbb.Model.Utils;
 import com.example.bloodbagbb.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +36,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+import static com.example.bloodbagbb.Model.Utils.search;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,8 +49,8 @@ public class ForRequestFragment extends Fragment {
     private TextView emergencyRequest, normalRequest, allRequest;
     private AutoCompleteTextView requestSearchBox;
     private String district;
-    private String checkingRequest = "";
     private FirebaseAuth firebaseAuth;
+    //private String hide = "f";
     private DatabaseReference requestRef;
     private FirebaseUser user;
     private ArrayList<BloodRequest> requestArrayList;
@@ -78,14 +85,14 @@ public class ForRequestFragment extends Fragment {
         requestSearchBox.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.districts)));
 
-
         requestArrayList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         bloodPostAdapter = new RequestAdapter(context, requestArrayList);
         recyclerView.setAdapter(bloodPostAdapter);
+       // Log.d(TAG, "onViewCreated: " + search);
 
-        RetrievedRequestData();
         ClickEvents();
+        RetrievedRequestData();
     }
 
     private void ClickEvents() {
@@ -103,7 +110,17 @@ public class ForRequestFragment extends Fragment {
         emergencyRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkingRequest = "flagEM";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    emergencyRequest.setBackgroundTintList(getResources().getColorStateList(R.color.programChangeColor));
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    normalRequest.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                }
+                search = "flagEM";
+                bloodPostAdapter = new RequestAdapter(context, requestArrayList,search);
+                recyclerView.setAdapter(bloodPostAdapter);
+
+                Log.d(TAG, "onClick emergency: " + search);
                 district = requestSearchBox.getText().toString().trim();
                 if (district.isEmpty()) {
                     searchByEmergency();
@@ -116,7 +133,18 @@ public class ForRequestFragment extends Fragment {
         normalRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkingRequest = "flagNM";
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    normalRequest.setBackgroundTintList(getResources().getColorStateList(R.color.programChangeColor));
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    emergencyRequest.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                }
+                search = "flagNM";
+                bloodPostAdapter = new RequestAdapter(context, requestArrayList,search);
+                recyclerView.setAdapter(bloodPostAdapter);
+
+                Log.d(TAG, "onClick normal: " + search);
+
                 district = requestSearchBox.getText().toString().trim();
                 if (district.isEmpty()) {
                     searchByNormal();
@@ -136,6 +164,15 @@ public class ForRequestFragment extends Fragment {
         allRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    normalRequest.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    emergencyRequest.setBackgroundTintList(getResources().getColorStateList(R.color.white));
+                }
+                search = "flagAll";
+                bloodPostAdapter = new RequestAdapter(context, requestArrayList,search);
+                recyclerView.setAdapter(bloodPostAdapter);
                 RetrievedRequestData();
             }
         });
@@ -165,9 +202,9 @@ public class ForRequestFragment extends Fragment {
 
     private void searchByDesireDistrict() {
         district = requestSearchBox.getText().toString().trim();
-        if (checkingRequest.equals("flagEM")) {
+        if (search.equals("flagEM")) {
             searchByCombineEM(district);
-        } else if (checkingRequest.equals("flagNM")) {
+        } else if (search.equals("flagNM")) {
             searchByCombineNM(district);
         } else {
             searchByDistrict(district);

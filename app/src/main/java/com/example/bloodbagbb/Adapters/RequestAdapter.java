@@ -1,6 +1,8 @@
 package com.example.bloodbagbb.Adapters;
 
 import android.content.Context;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +20,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHolder> {
     private Context context;
     private ArrayList<BloodRequest> userRequestList;
+    private String checkingRequest;
+
+    public RequestAdapter(Context context, ArrayList<BloodRequest> userRequestList, String checkingRequest) {
+        this.context = context;
+        this.userRequestList = userRequestList;
+        this.checkingRequest = checkingRequest;
+    }
 
     public RequestAdapter(Context context, ArrayList<BloodRequest> userRequestList) {
         this.context = context;
@@ -44,6 +55,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
         String description = requestInfo.getReason();
         String sample = requestInfo.getBloodGroup();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //Checking current user and set accepting and deleting request
         if(requestInfo.getUserId().equals(firebaseUser.getUid())){
             holder.acceptBTN.setVisibility(View.GONE);
             holder.declineBTN.setVisibility(View.VISIBLE);
@@ -52,8 +64,26 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
             holder.declineBTN.setVisibility(View.GONE);
             holder.acceptBTN.setVisibility(View.VISIBLE);
         }
+        // Checking emergency or Normal and set number Visible and Invisible
+        Log.d(TAG, "onBindViewHolder: " + checkingRequest);
+        if(checkingRequest!= null){
+
+            if(checkingRequest.equals("flagNM")){
+            holder.contact.setVisibility(View.GONE);
+            holder.viewContact.setVisibility(View.GONE);
+        }
+        else if(checkingRequest.equals("flagEM")){
+            holder.viewContact.setVisibility(View.VISIBLE);
+            holder.contact.setText(number);
+        }
+
+        else if(checkingRequest.equals("flagAll")){
+                holder.viewContact.setVisibility(View.VISIBLE);
+                holder.contact.setText(number);
+            }
+        }
+
         holder.date2.setText(enDate);
-        holder.contact.setText(number);
         holder.area.setText(home);
         holder.reason.setText(description);
         holder.sampleBlood.setText(sample);
@@ -66,7 +96,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
 
     public class viewHolder extends RecyclerView.ViewHolder {
 
-        private TextView date2, contact, area, reason, sampleBlood;
+        private TextView date2, contact, area, reason, sampleBlood, viewContact;
         private Button declineBTN, acceptBTN;
 
         public viewHolder(@NonNull View itemView) {
@@ -76,9 +106,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
             contact = itemView.findViewById(R.id.patiantNumber);
             area = itemView.findViewById(R.id.patiantArea);
             reason = itemView.findViewById(R.id.patiantReason);
-
+            viewContact = itemView.findViewById(R.id.contactText);
             declineBTN = itemView.findViewById(R.id.declineBT);
             acceptBTN = itemView.findViewById(R.id.acceptBT);
+
         }
     }
 }
