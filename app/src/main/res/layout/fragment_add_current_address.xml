@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackGround"
+    tools:context=".Fragment.AddCurrentAddressFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:src="@drawable/back"/>
+    <ImageView
+        android:id="@+id/backIcon"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/arrow"
+        android:src="@drawable/home"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/backIcon"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="District:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cDistrict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="20dp"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:hint=" Enter District (e.g. Dhaka)"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Area:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:hint="Enter Area (e.g. Jigatala)"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="House No:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cHouseNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="20dp"
+            android:padding="8dp"
+            android:hint="Enter House no (e.g. 75/G)"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Road No:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cRoadNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:hint="Enter Road no (e.g. Dhanmondi-5A)"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Flat No:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/cFlatNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="20dp"
+            android:textColor="@color/black"
+            android:hint="Enter Flat no (e.g. 1A)"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/addHomeBTN"
+            android:layout_width="240dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/background_btn"
+            android:elevation="8dp"
+            android:text="Add Home"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/textColor"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -23,7 +23,7 @@ import com.example.bloodbagbb.R;
 public class SettingsFragment extends Fragment {
 
     private Context context;
-    private TextView viewProfileTV, viewPasswordTV;
+    private TextView viewProfileTV, viewPasswordTV, viewCurrentAddress, viewParmanentAddress;
     private ImageView backToParent;
 
     public SettingsFragment() {
@@ -48,6 +48,10 @@ public class SettingsFragment extends Fragment {
 
         inItView(view);
 
+        clickEvents();
+    }
+
+    private void clickEvents() {
         viewProfileTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +78,23 @@ public class SettingsFragment extends Fragment {
                         .commit();
             }
         });
+
+        viewCurrentAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new CurrentAddressFragment())
+                        .commit();
+            }
+        });
+        viewParmanentAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new ParmanentAddressFragment())
+                        .commit();
+            }
+        });
     }
 
     private void inItView(View view) {
@@ -81,5 +102,7 @@ public class SettingsFragment extends Fragment {
         viewProfileTV = view.findViewById(R.id.profileEdit);
         viewPasswordTV = view.findViewById(R.id.tvPassword);
         backToParent = view.findViewById(R.id.arrow);
+        viewCurrentAddress = view.findViewById(R.id.currentAddressTV);
+        viewParmanentAddress = view.findViewById(R.id.parmanentAddressTV);
     }
 }
