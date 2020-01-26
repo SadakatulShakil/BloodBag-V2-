@@ -75,7 +75,7 @@ public class FindDonorFragment extends Fragment {
 
         userInfoList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        appUserAdapter = new DonorAdapter(context, userInfoList, clickListener);
+        appUserAdapter = new DonorAdapter(context, userInfoList);
         recyclerView.setAdapter(appUserAdapter);
 
         RetrievedAllDonorData();

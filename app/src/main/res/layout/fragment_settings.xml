@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appBackGround"
-    tools:context=".Fragment.RequestFormFragment">
+    tools:context=".Fragment.SettingsFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -115,7 +115,7 @@
             android:background="@color/white"/>
 
         <TextView
-            android:id="@+id/editPassword"
+            android:id="@+id/tvPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"

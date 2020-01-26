@@ -16,17 +16,15 @@ import java.util.ArrayList;
 
 public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> {
 
-    public interface OnItemClickListener {
-        void onItemClick(User userInfo);
-    }
+
     private Context context;
     private ArrayList<User> userArrayList;
-    private final OnItemClickListener clickListener;
 
-    public DonorAdapter(Context context, ArrayList<User> userArrayList, OnItemClickListener clickListener) {
+
+    public DonorAdapter(Context context, ArrayList<User> userArrayList) {
         this.context = context;
         this.userArrayList = userArrayList;
-        this.clickListener = clickListener;
+
     }
 
     @NonNull

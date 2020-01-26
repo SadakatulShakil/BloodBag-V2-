@@ -23,7 +23,7 @@ import com.example.bloodbagbb.R;
 public class SettingsFragment extends Fragment {
 
     private Context context;
-    private TextView viewProfileTV;
+    private TextView viewProfileTV, viewPasswordTV;
     private ImageView backToParent;
 
     public SettingsFragment() {
@@ -57,6 +57,15 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        viewPasswordTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new ChangePasswordFragment())
+                        .commit();
+            }
+        });
+
         backToParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +79,7 @@ public class SettingsFragment extends Fragment {
     private void inItView(View view) {
 
         viewProfileTV = view.findViewById(R.id.profileEdit);
+        viewPasswordTV = view.findViewById(R.id.tvPassword);
         backToParent = view.findViewById(R.id.arrow);
     }
 }
