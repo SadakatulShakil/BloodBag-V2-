@@ -1,24 +1,19 @@
-package com.example.bloodbagbb.Fragment;
+package com.example.bloodbagbb.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
@@ -28,6 +23,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bloodbagbb.Fragment.ForRequestFragment;
+import com.example.bloodbagbb.Fragment.RequestFormFragment;
 import com.example.bloodbagbb.Model.BloodRequest;
 import com.example.bloodbagbb.Model.Utils;
 import com.example.bloodbagbb.R;
@@ -47,11 +44,7 @@ import java.util.Locale;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RequestFormFragment extends Fragment {
-    private Context context;
+public class RequestFormActivity extends AppCompatActivity {
     private RadioGroup rgType;
     String postingTime;
     private EditText pickDate2, userArea, description, number;
@@ -61,62 +54,47 @@ public class RequestFormFragment extends Fragment {
     private DatabaseReference requestRef;
     private BloodRequest bloodRequest;
     private FirebaseUser user;
-    protected static TextView endDate;
-
-    public RequestFormFragment() {
-        // Required empty public constructor
-    }
-
+    protected static TextView startDate, endDate;
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        this.context = context;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_request_form);
+        inItView();
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_request_form, container, false);
-    }
+        final FragmentManager fm = getSupportFragmentManager();
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        expectedBG.setThreshold(1);
+        expectedBG.setAdapter(new ArrayAdapter<>(RequestFormActivity.this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.bloodGroup)));
 
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        inItView(view);
-        final FragmentManager fm = (getActivity()).getSupportFragmentManager();
+        userDistrict.setThreshold(1);
+        userDistrict.setAdapter(new ArrayAdapter<>(RequestFormActivity.this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.districts)));
 
         pickDate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // create the datePickerFragment
-                AppCompatDialogFragment newFragment = new DatePickerFragment1();
+                AppCompatDialogFragment newFragment = new RequestFormFragment.DatePickerFragment1();
 
                 newFragment.show(fm, "datePicker");
 
             }
         });
-
-        expectedBG.setThreshold(1);
-        expectedBG.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.bloodGroup)));
-
-        userDistrict.setThreshold(1);
-        userDistrict.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.districts)));
-
         clickEvents();
     }
 
     private void clickEvents() {
-
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*Fragment fragment = new ForRequestFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
                 Log.d(TAG, "onClick: " + Utils.bucketFragment.toString());
-                getActivity().onBackPressed();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, fragment)
+                        .commit();*/
+                onBackPressed();
             }
         });
 
@@ -139,7 +117,7 @@ public class RequestFormFragment extends Fragment {
                 postingTime = myDateFormat.format(calendar.getTime());
 
                 if (date2.isEmpty()) {
-                    pickDate2.setError("date is required!");
+                    pickDate2.setError("End date is required!");
                     pickDate2.requestFocus();
                     return;
                 }
@@ -169,15 +147,17 @@ public class RequestFormFragment extends Fragment {
                     return;
                 }
 
-                Toast.makeText(context, "Type :" + typeOfNeed + " " + "Time: " + postingTime, Toast.LENGTH_SHORT).show();
                 storeRequestData(date2, bGroup, contact, district, area, typeOfNeed, reason, postingTime);
 
-                endDate.setText("");
+                pickDate2.setText("");
                 expectedBG.setText("");
                 number.setText("");
                 userDistrict.setText("");
                 userArea.setText("");
                 description.setText("");
+
+                Toast.makeText(RequestFormActivity.this, "Type :" + typeOfNeed + " " + "Time: " + postingTime, Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -198,29 +178,31 @@ public class RequestFormFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(context, "Successful!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RequestFormActivity.this, "Successful!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestFormActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
 
-    private void inItView(View view) {
-        pickDate2 = view.findViewById(R.id.dateET);
-        expectedBG = view.findViewById(R.id.userBloodGroup);
-        number = view.findViewById(R.id.contactET);
-        userDistrict = view.findViewById(R.id.locationEt);
-        userArea = view.findViewById(R.id.areaET);
-        description = view.findViewById(R.id.descriptionET);
-        btCancel = view.findViewById(R.id.cancelTV);
-        btPost = view.findViewById(R.id.postTV);
-        rgType = view.findViewById(R.id.typeOfBloodNeed);
+    private void inItView() {
+
+        pickDate2 = findViewById(R.id.dateET);
+        expectedBG = findViewById(R.id.userBloodGroup);
+        number = findViewById(R.id.contactET);
+        userDistrict = findViewById(R.id.locationEt);
+        userArea = findViewById(R.id.areaET);
+        description = findViewById(R.id.descriptionET);
+        btCancel = findViewById(R.id.cancelTV);
+        btPost = findViewById(R.id.postTV);
+        rgType = findViewById(R.id.typeOfBloodNeed);
     }
 
     //DatePickerMethods

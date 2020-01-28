@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
         holder.donationDate.setText(dateOfDonate);
         holder.donationLocation.setText(locationOfDonate);
         holder.donationDescription.setText(descriptionOfDonate);
+
+
     }
 
     @Override
@@ -53,6 +56,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
 
     public class viewHolder extends RecyclerView.ViewHolder {
         private TextView donationDate, donationLocation, donationDescription;
+        private Button btnDelete, btnAccept;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 

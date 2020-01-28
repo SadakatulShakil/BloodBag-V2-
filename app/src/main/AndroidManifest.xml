@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bloodbagbb">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,10 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.FragmentMenuActivity"></activity>
+        <activity android:name=".Activity.AddHistoryActivity"></activity>
+        <activity android:name=".Activity.RequestFormActivity" />
+        <activity android:name=".Activity.CommunicationActivity" />
+        <activity android:name=".Activity.FragmentMenuActivity" />
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".Activity.SignInActivity" />
         <activity android:name=".Activity.MainActivity">

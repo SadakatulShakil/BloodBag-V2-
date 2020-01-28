@@ -1,6 +1,8 @@
 package com.example.bloodbagbb.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,14 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodbagbb.Activity.RequestFormActivity;
 import com.example.bloodbagbb.Model.BloodRequest;
 import com.example.bloodbagbb.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -26,7 +34,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
     private Context context;
     private ArrayList<BloodRequest> userRequestList;
     private String checkingRequest;
-
+    private DatabaseReference requestRef;
     public RequestAdapter(Context context, ArrayList<BloodRequest> userRequestList, String checkingRequest) {
         this.context = context;
         this.userRequestList = userRequestList;
@@ -46,7 +54,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RequestAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RequestAdapter.viewHolder holder, final int position) {
         final BloodRequest requestInfo = userRequestList.get(position);
 
         String enDate = requestInfo.getEndDate();
@@ -56,37 +64,64 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
         String sample = requestInfo.getBloodGroup();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         //Checking current user and set accepting and deleting request
-        if(requestInfo.getUserId().equals(firebaseUser.getUid())){
+        if (requestInfo.getUserId().equals(firebaseUser.getUid())) {
             holder.acceptBTN.setVisibility(View.GONE);
             holder.declineBTN.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             holder.declineBTN.setVisibility(View.GONE);
             holder.acceptBTN.setVisibility(View.VISIBLE);
         }
         // Checking emergency or Normal and set number Visible and Invisible
         Log.d(TAG, "onBindViewHolder: " + checkingRequest);
-        if(checkingRequest!= null){
+        if (checkingRequest != null) {
 
-            if(checkingRequest.equals("flagNM")){
-            holder.contact.setVisibility(View.GONE);
-            holder.viewContact.setVisibility(View.GONE);
-        }
-        else if(checkingRequest.equals("flagEM")){
-            holder.viewContact.setVisibility(View.VISIBLE);
-            holder.contact.setText(number);
-        }
-
-        else if(checkingRequest.equals("flagAll")){
+            if (checkingRequest.equals("flagNM")) {
+                holder.contact.setVisibility(View.GONE);
+                holder.viewContact.setVisibility(View.GONE);
+            } else if (checkingRequest.equals("flagEM")) {
+                holder.viewContact.setVisibility(View.VISIBLE);
+                holder.contact.setText(number);
+            } else if (checkingRequest.equals("flagAll")) {
                 holder.viewContact.setVisibility(View.VISIBLE);
                 holder.contact.setText(number);
             }
         }
-
+        holder.contact.setText(number);
         holder.date2.setText(enDate);
         holder.area.setText(home);
         holder.reason.setText(description);
         holder.sampleBlood.setText(sample);
+
+        requestRef = FirebaseDatabase.getInstance().getReference("requests");
+        holder.acceptBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(requestInfo.getContact()))));
+            }
+        });
+
+        holder.declineBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestRef.child(requestInfo.getPushId()).removeValue()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+                                    Toast.makeText(context, "Successfully Deleted!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                userRequestList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

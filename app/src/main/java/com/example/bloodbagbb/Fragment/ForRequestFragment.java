@@ -2,6 +2,7 @@ package com.example.bloodbagbb.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodbagbb.Activity.RequestFormActivity;
 import com.example.bloodbagbb.Adapters.RequestAdapter;
 import com.example.bloodbagbb.Model.BloodRequest;
 import com.example.bloodbagbb.Model.Utils;
@@ -101,9 +103,11 @@ public class ForRequestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //openPostRequestDialog();
-                getActivity().getSupportFragmentManager().beginTransaction()
+                /*getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new RequestFormFragment())
-                        .commit();
+                        .commit();*/
+                Intent intent = new Intent(context, RequestFormActivity.class);
+                startActivity(intent);
             }
         });
 

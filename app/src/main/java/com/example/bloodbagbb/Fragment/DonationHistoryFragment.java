@@ -2,6 +2,7 @@ package com.example.bloodbagbb.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodbagbb.Activity.AddHistoryActivity;
+import com.example.bloodbagbb.Activity.RequestFormActivity;
 import com.example.bloodbagbb.Adapters.HistoryAdapter;
 import com.example.bloodbagbb.Adapters.RequestAdapter;
 import com.example.bloodbagbb.Model.BloodRequest;
@@ -80,16 +83,17 @@ public class DonationHistoryFragment extends Fragment {
         donationHistoryAdapter = new HistoryAdapter(context, historyList);
         recyclerView.setAdapter(donationHistoryAdapter);
 
-        retrievedHistoryData();
-
         historyFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
+               /* getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new AddHistoryFragment())
-                        .commit();
+                       .commit();*/
+                Intent intent = new Intent(context, AddHistoryActivity.class);
+                startActivity(intent);
             }
         });
+        retrievedHistoryData();
     }
 
     private void retrievedHistoryData() {

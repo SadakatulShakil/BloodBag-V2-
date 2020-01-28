@@ -1,14 +1,18 @@
 package com.example.bloodbagbb.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodbagbb.Activity.CommunicationActivity;
+import com.example.bloodbagbb.Fragment.CommunicationFragment;
 import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 
@@ -41,22 +45,35 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
         final User donorInfo = userArrayList.get(position);
 
         String bg = donorInfo.getBloodGroup();
-        String name = donorInfo.getName();
+        final String name = donorInfo.getName();
         final String contact = donorInfo.getContact();
-        String area = donorInfo.getArea();
+        final String area = donorInfo.getArea();
+        final String email = donorInfo.getEmail();
+        final String district = donorInfo.getDistrict();
 
         holder.userBloodGroup.setText(bg);
         holder.userName.setText(name);
         holder.userContact.setText(contact);
         holder.userArea.setText(area);
 
+        final Fragment postChildFragment = new CommunicationFragment();
 
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*getChildFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, postChildFragment)
+                        .commit();*/
 
+                Intent intent = new Intent(context, CommunicationActivity.class);
+                intent.putExtra("donorInfo",donorInfo);
+                /*intent.putExtra("comEmail",email);
+                intent.putExtra("comDistrict",district);
+                intent.putExtra("comArea",area);
+                intent.putExtra("comContact",contact);*/
+                context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override

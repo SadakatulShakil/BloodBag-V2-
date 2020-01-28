@@ -195,7 +195,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/decline_btn"
-                    android:text="Decline"
+                    android:text="Remove"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/green"
                     android:textStyle="bold" />
@@ -231,7 +231,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/fbShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -240,7 +240,7 @@
                     android:src="@drawable/facebook" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/instagramShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -249,7 +249,7 @@
                     android:src="@drawable/instagram" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/linkedInShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
