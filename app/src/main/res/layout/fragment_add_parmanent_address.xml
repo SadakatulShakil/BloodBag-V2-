@@ -103,7 +103,7 @@
             android:textColor="@color/textColor"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/pVillage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:textColor="@color/textColor"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/pPostOffice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

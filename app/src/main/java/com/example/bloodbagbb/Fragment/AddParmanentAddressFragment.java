@@ -78,7 +78,7 @@ public class AddParmanentAddressFragment extends Fragment {
         String newVillage = villageET.getText().toString().trim();
         String newPostOffice = postOfficeET.getText().toString().trim();
 
-        Fragment fragment = new CurrentAddressFragment();
+        Fragment fragment = new ParmanentAddressFragment();
         Bundle bundle = new Bundle();
 
         bundle.putString("NewDivision", newDivision);
@@ -116,6 +116,7 @@ public class AddParmanentAddressFragment extends Fragment {
         villageET = view.findViewById(R.id.pVillage);
         postOfficeET = view.findViewById(R.id.pPostOffice);
 
+        back = view.findViewById(R.id.arrow);
         addHomeBTN = view.findViewById(R.id.addHomeBTN);
     }
 }

@@ -95,7 +95,7 @@ public class ParmanentAddressFragment extends Fragment {
         String oldVillage = villageTV.getText().toString().trim();
         String oldPostOffice = postOfficeTV.getText().toString().trim();
 
-        Fragment fragment = new AddCurrentAddressFragment();
+        Fragment fragment = new AddParmanentAddressFragment();
 
         Bundle bundle = new Bundle();
         bundle.putString("OldDivision", oldDivision);

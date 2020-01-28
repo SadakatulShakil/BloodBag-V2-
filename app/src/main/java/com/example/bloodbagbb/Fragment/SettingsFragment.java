@@ -57,6 +57,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new ViewProfileFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });
@@ -66,6 +67,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new ChangePasswordFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });
@@ -84,6 +86,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new CurrentAddressFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });
@@ -92,6 +95,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new ParmanentAddressFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });

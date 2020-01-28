@@ -121,6 +121,7 @@ public class DonorMenuFragment extends Fragment {
                     case R.id.settings:
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.frameLayoutID, new SettingsFragment())
+                                .addToBackStack(null)
                                 .commit();
                         Toast.makeText(context, "Settings Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;

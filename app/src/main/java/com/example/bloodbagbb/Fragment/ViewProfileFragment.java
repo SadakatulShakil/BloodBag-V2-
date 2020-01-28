@@ -76,6 +76,7 @@ public class ViewProfileFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayoutID, new EditProfileFragment())
+                        .addToBackStack(null)
                         .commit();
             }
         });

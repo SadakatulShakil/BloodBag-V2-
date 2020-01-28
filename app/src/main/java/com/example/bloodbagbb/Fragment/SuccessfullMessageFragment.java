@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.bloodbagbb.Activity.MainActivity;
 import com.example.bloodbagbb.Activity.SignInActivity;
 import com.example.bloodbagbb.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +62,7 @@ public class SuccessfullMessageFragment extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 getActivity().finish();
-                Intent intent = new Intent(context, SignInActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
             }
         });
