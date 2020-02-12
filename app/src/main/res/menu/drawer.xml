@@ -7,14 +7,14 @@
         android:title="Settings" />
 
     <item
-        android:id="@+id/terms"
-        android:icon="@drawable/terms"
-        android:title="Terms" />
+        android:id="@+id/feedback"
+        android:icon="@drawable/feedback"
+        android:title="Feedback" />
 
     <item
-        android:id="@+id/licenses"
-        android:icon="@drawable/licence"
-        android:title="Licenses" />
+        android:id="@+id/adminpanel"
+        android:icon="@drawable/admin_panel"
+        android:title="Admin Panel" />
 
     <item
         android:id="@+id/about"

@@ -2,6 +2,7 @@ package com.example.bloodbagbb.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +12,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.bloodbagbb.Activity.NeedToKnowActivity;
+import com.example.bloodbagbb.Activity.WhyDonateBloodActivity;
 import com.example.bloodbagbb.Model.History;
 import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
@@ -36,6 +40,7 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference historyRef;
     FirebaseUser firebaseUser;
     private User user;
+    private CardView cardForWhyDonate, cardForNeedToKnow;
     private int listSize;
     private ArrayList<History>historyArrayList;
 
@@ -67,6 +72,22 @@ public class ProfileFragment extends Fragment {
         initView(view);
         historyArrayList = new ArrayList<>();
         retrievedData();
+
+        cardForWhyDonate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, WhyDonateBloodActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardForNeedToKnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NeedToKnowActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void retrievedData() {
@@ -122,6 +143,8 @@ public class ProfileFragment extends Fragment {
         userBloodGrioupTV = view.findViewById(R.id.bloodGroup);
         userContactTV = view.findViewById(R.id.userContact);
         countingDonation =view.findViewById(R.id.donationCount);
+        cardForWhyDonate = view.findViewById(R.id.whyDonate);
+        cardForNeedToKnow = view.findViewById(R.id.needToKnow);
 
     }
 }

@@ -14,7 +14,11 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.AddHistoryActivity"></activity>
+        <activity android:name=".Activity.AdminActivity"></activity>
+        <activity android:name=".Activity.FeedBackActivity" />
+        <activity android:name=".Activity.NeedToKnowActivity" />
+        <activity android:name=".Activity.WhyDonateBloodActivity" />
+        <activity android:name=".Activity.AddHistoryActivity" />
         <activity android:name=".Activity.RequestFormActivity" />
         <activity android:name=".Activity.CommunicationActivity" />
         <activity android:name=".Activity.FragmentMenuActivity" />

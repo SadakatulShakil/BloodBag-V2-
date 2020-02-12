@@ -190,6 +190,7 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/whyDonate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="18dp"
@@ -197,7 +198,7 @@
                 app:cardCornerRadius="8dp">
 
                 <TextView
-                    android:id="@+id/whyDonate"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/question"
@@ -210,6 +211,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/needToKnow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="18dp"
@@ -217,7 +219,6 @@
                 app:cardCornerRadius="8dp">
 
                 <TextView
-                    android:id="@+id/needToKnow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/knowledge"

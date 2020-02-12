@@ -20,13 +20,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bloodbagbb.Activity.FeedBackActivity;
 import com.example.bloodbagbb.Activity.SignInActivity;
-import com.example.bloodbagbb.Model.Utils;
 import com.example.bloodbagbb.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import static com.example.bloodbagbb.Model.Utils.bucketFragment;
 
@@ -125,10 +124,12 @@ public class DonorMenuFragment extends Fragment {
                                 .commit();
                         Toast.makeText(context, "Settings Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.terms:
+                    case R.id.feedback:
+                        Intent intent = new Intent(context, FeedBackActivity.class);
+                        startActivity(intent);
                         Toast.makeText(context, "Terms Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.licenses:
+                    case R.id.adminpanel:
                         Toast.makeText(context, "Licenses Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.about:
@@ -137,8 +138,8 @@ public class DonorMenuFragment extends Fragment {
                     case R.id.logOut:
                         FirebaseAuth.getInstance().signOut();
                         getActivity().finish();
-                        Intent intent = new Intent(context, SignInActivity.class);
-                        startActivity(intent);
+                        Intent intent1 = new Intent(context, SignInActivity.class);
+                        startActivity(intent1);
                         break;
 
                     default:
