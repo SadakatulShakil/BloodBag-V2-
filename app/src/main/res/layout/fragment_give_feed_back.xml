@@ -9,6 +9,43 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <ImageView
+        android:id="@+id/demoFeedBack"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/feedbackim"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        android:elevation="8dp"
+        android:background="@drawable/background_edittext"
+        android:inputType="textMultiLine"
+        android:hint="Feel free to share if you face any problem"
+        android:textColorHint="@color/red"
+        android:paddingLeft="8dp"
+        android:imeOptions="actionDone"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/demoFeedBack" />
+
+    <Button
+        android:id="@+id/sendFeedBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_btn"
+        android:layout_margin="8dp"
+        android:text="send"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_rate"
@@ -19,7 +56,7 @@
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/sendFeedBack">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +73,7 @@
                 android:gravity="center"
                 android:text="Give us a rate on the play-store"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -72,51 +109,19 @@
 
             </LinearLayout>
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Google Play"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/background_btn"
-                android:text="Submit" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:drawableLeft="@drawable/play_store"
+                android:drawablePadding="8dp"
+                android:gravity="center"/>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Feel free to share if you face any problem"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_rate" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
-        android:background="@color/white"
-        android:hint="MultiAutoCompleteTextView"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_btn"
-        android:layout_margin="8dp"
-        android:text="send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

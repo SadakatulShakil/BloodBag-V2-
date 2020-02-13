@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bloodbagbb.Activity.AdminActivity;
 import com.example.bloodbagbb.Activity.FeedBackActivity;
 import com.example.bloodbagbb.Activity.SignInActivity;
 import com.example.bloodbagbb.R;
@@ -127,10 +128,10 @@ public class DonorMenuFragment extends Fragment {
                     case R.id.feedback:
                         Intent intent = new Intent(context, FeedBackActivity.class);
                         startActivity(intent);
-                        Toast.makeText(context, "Terms Under Construction be Happy!", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.adminpanel:
-                        Toast.makeText(context, "Licenses Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Intent intent1 = new Intent(context, AdminActivity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.about:
                         Toast.makeText(context, "About Under Construction be Happy!", Toast.LENGTH_LONG).show();
@@ -138,8 +139,8 @@ public class DonorMenuFragment extends Fragment {
                     case R.id.logOut:
                         FirebaseAuth.getInstance().signOut();
                         getActivity().finish();
-                        Intent intent1 = new Intent(context, SignInActivity.class);
-                        startActivity(intent1);
+                        Intent intent3 = new Intent(context, SignInActivity.class);
+                        startActivity(intent3);
                         break;
 
                     default:

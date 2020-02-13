@@ -13,4 +13,9 @@
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
         <item name="android:textColor">@color/my_spinner_text_color</item>
     </style>
+
+    <style name="customTextSize" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

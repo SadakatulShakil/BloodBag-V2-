@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -122,6 +123,30 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
                 notifyDataSetChanged();
             }
         });
+
+        holder.sharedLayOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sDate = requestInfo.getEndDate();
+                String sContact = requestInfo.getContact();
+                String sArea = requestInfo.getArea();
+                String sReason = requestInfo.getReason();
+                String sImportance = requestInfo.getType();
+
+                String sharedContent = "Powered By 'Blood Bag' App" +System.getProperty("line.separator")
+                        + "Importance : "+sImportance +System.getProperty("line.separator")
+                        + " Needed Date : "+ sDate +System.getProperty("line.separator")
+                        + "Contact : "+sContact +System.getProperty("line.separator")
+                        + "Reason : "+sReason +System.getProperty("line.separator")
+                        + "Location : "+sArea +System.getProperty("line.separator")
+                        +"Advanced Thank You!";
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Blood Request");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharedContent);
+                context.startActivity(Intent.createChooser(sharingIntent, "Share text via"));
+            }
+        });
     }
 
     @Override
@@ -133,6 +158,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
 
         private TextView date2, contact, area, reason, sampleBlood, viewContact;
         private Button declineBTN, acceptBTN;
+        private LinearLayout sharedLayOut;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +170,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.viewHold
             viewContact = itemView.findViewById(R.id.contactText);
             declineBTN = itemView.findViewById(R.id.declineBT);
             acceptBTN = itemView.findViewById(R.id.acceptBT);
+            sharedLayOut = itemView.findViewById(R.id.shareWithSocialMedia);
 
         }
     }

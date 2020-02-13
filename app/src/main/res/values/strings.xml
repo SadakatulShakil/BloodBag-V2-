@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Blood-BAG</string>
+    <string name="app_name">Blood Bag</string>
     <string name="butterfly_html">why_donate.html</string>
-    <string name="feedBack">Feed-Back</string>
-    <string name="admin">Admin-Panel</string>
+    <string name="feedBack">FeedBack</string>
+    <string name="admin">AdminPanel</string>
     <string name="new_butterfly_html">need_to_know.html</string>
     <string name="no_such_page">There is no such page&#8230;</string>
     <string-array name="districts">
