@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bloodbagbb.Activity.AboutUsActivity;
 import com.example.bloodbagbb.Activity.AdminActivity;
 import com.example.bloodbagbb.Activity.FeedBackActivity;
 import com.example.bloodbagbb.Activity.SignInActivity;
@@ -134,13 +135,14 @@ public class DonorMenuFragment extends Fragment {
                         startActivity(intent1);
                         break;
                     case R.id.about:
-                        Toast.makeText(context, "About Under Construction be Happy!", Toast.LENGTH_LONG).show();
+                        Intent intent3 = new Intent(context, AboutUsActivity.class);
+                        startActivity(intent3);
                         break;
                     case R.id.logOut:
                         FirebaseAuth.getInstance().signOut();
                         getActivity().finish();
-                        Intent intent3 = new Intent(context, SignInActivity.class);
-                        startActivity(intent3);
+                        Intent intent4 = new Intent(context, SignInActivity.class);
+                        startActivity(intent4);
                         break;
 
                     default:

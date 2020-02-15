@@ -93,6 +93,12 @@ public class DonationHistoryFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         retrievedHistoryData();
     }
 

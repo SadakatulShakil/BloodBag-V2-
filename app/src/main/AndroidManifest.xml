@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.AdminActivity"></activity>
+        <activity android:name=".Activity.AboutUsActivity"></activity>
+        <activity android:name=".Activity.AdminActivity" />
         <activity android:name=".Activity.FeedBackActivity" />
         <activity android:name=".Activity.NeedToKnowActivity" />
         <activity android:name=".Activity.WhyDonateBloodActivity" />
