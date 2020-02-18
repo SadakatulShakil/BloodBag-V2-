@@ -27,8 +27,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +45,8 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference historyRef;
     FirebaseUser firebaseUser;
     private User user;
+    private String userId;
+    CircleImageView profileImage;
     private CardView cardForWhyDonate, cardForNeedToKnow;
     private int listSize;
     private ArrayList<History>historyArrayList;
@@ -70,6 +77,10 @@ public class ProfileFragment extends Fragment {
         Log.d(TAG, "onViewCreated: started");
 
         initView(view);
+        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
+
         historyArrayList = new ArrayList<>();
         retrievedData();
 
@@ -86,6 +97,34 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(context, NeedToKnowActivity.class);
                 startActivity(intent);
+            }
+        });
+        displayProfileImage();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        displayProfileImage();
+    }
+
+    private void displayProfileImage() {
+        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+
+        displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    String url = snap.getValue()+"";
+                    Log.d(TAG, "proImageUrl: " + url);
+
+                    Picasso.get().load(url).into(profileImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
@@ -145,6 +184,7 @@ public class ProfileFragment extends Fragment {
         countingDonation =view.findViewById(R.id.donationCount);
         cardForWhyDonate = view.findViewById(R.id.whyDonate);
         cardForNeedToKnow = view.findViewById(R.id.needToKnow);
+        profileImage = view.findViewById(R.id.userProfileImage);
 
     }
 }

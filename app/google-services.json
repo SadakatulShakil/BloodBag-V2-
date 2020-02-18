@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "418394393051-522tseaps207a1315mue3c9luurpbf6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloodbagbb",
+            "certificate_hash": "c82e311360c316cdd17a83d700054e0d3c3f6d4c"
+          }
+        },
+        {
           "client_id": "418394393051-h6vs9fgnkavkjqs1k2pqja32n2hrkkng.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
