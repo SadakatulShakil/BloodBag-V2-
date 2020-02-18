@@ -99,12 +99,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        displayProfileImage();
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
         displayProfileImage();
     }
 

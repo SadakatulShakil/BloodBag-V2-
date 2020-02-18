@@ -103,13 +103,6 @@ public class EditProfileFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        displayProfileImage();
-    }
-
     private void displayProfileImage() {
 
         final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);

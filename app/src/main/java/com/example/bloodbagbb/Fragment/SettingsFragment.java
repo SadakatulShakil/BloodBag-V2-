@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bloodbagbb.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -23,8 +33,12 @@ import com.example.bloodbagbb.R;
 public class SettingsFragment extends Fragment {
 
     private Context context;
+    CircleImageView demoProfile;
     private TextView viewProfileTV, viewPasswordTV, viewCurrentAddress, viewParmanentAddress;
     private ImageView backToParent;
+    private DatabaseReference donorRef;
+    private FirebaseAuth firebaseAuth;
+    private String userId;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -47,6 +61,10 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         inItView(view);
+
+        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
 
         clickEvents();
     }
@@ -99,7 +117,29 @@ public class SettingsFragment extends Fragment {
                         .commit();
             }
         });
+
+        displayProfileImage();
     }
+
+    private void displayProfileImage() {
+        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+
+        displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    String url = snap.getValue()+"";
+                    Picasso.get().load(url).into(demoProfile);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void inItView(View view) {
 
@@ -108,5 +148,6 @@ public class SettingsFragment extends Fragment {
         backToParent = view.findViewById(R.id.arrow);
         viewCurrentAddress = view.findViewById(R.id.currentAddressTV);
         viewParmanentAddress = view.findViewById(R.id.parmanentAddressTV);
+        demoProfile = view.findViewById(R.id.profileIV);
     }
 }

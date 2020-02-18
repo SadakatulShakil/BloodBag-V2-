@@ -102,12 +102,6 @@ public class ViewProfileFragment extends Fragment {
         displayProfileImage();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        displayProfileImage();
-    }
-
     private void displayProfileImage() {
         final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
 
