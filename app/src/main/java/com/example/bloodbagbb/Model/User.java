@@ -10,9 +10,25 @@ public class User implements Serializable {
     private String district;
     private String area;
     private String bloodGroup;
+    private String feedBack;
 
     public User() {
 
+    }
+
+    public String getFeedBack() {
+        return feedBack;
+    }
+
+    public void setFeedBack(String feedBack) {
+        this.feedBack = feedBack;
+    }
+
+    public User(String userId, String name, String contact, String feedBack) {
+        this.userId = userId;
+        this.name = name;
+        this.contact = contact;
+        this.feedBack = feedBack;
     }
 
     public User(String userId, String name, String email, String contact, String district, String area, String bloodGroup) {

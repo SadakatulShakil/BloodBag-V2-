@@ -20,11 +20,11 @@
             android:textColor="#D81B31" />
 
         <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="8dp"
-            android:background="#D81B31" />
+    android:id="@+id/view1"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_margin="8dp"
+    android:background="#D81B31" />
 
     <GridLayout
         android:id="@+id/mainGrid"
@@ -38,6 +38,7 @@
         android:rowCount="2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/checkFeedBackCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -74,6 +75,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/manageDonorCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -110,6 +112,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/addDonorCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
@@ -146,6 +149,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/backToHomeCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"

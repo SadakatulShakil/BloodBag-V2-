@@ -20,18 +20,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/feedBackText"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="8dp"
-        android:elevation="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/background_edittext"
-        android:inputType="textMultiLine"
+        android:elevation="8dp"
+        android:gravity="center"
         android:hint="Feel free to share if you face any problem"
-        android:textColorHint="@color/red"
-        android:paddingLeft="8dp"
         android:imeOptions="actionDone"
-        android:gravity="start"
+        android:inputType="text|textMultiLine|textCapSentences"
+        android:paddingLeft="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/demoFeedBack" />
@@ -45,7 +46,7 @@
         android:text="send"
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/feedBackText" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_rate"
