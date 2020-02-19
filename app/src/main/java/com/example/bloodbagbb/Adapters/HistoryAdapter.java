@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbagbb.Model.History;
+import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
         this.context = context;
         this.historyArrayList = historyArrayList;
     }
+
 
 
     @NonNull

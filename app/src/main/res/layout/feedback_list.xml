@@ -101,18 +101,13 @@
                             android:textColor="@color/red"/>
                     </LinearLayout>
 
-                    <View
-                        android:id="@+id/view1"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#D81B31" />
-
                     <TextView
                         android:id="@+id/feedDescription"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:paddingLeft="5dp"
                         android:maxLines="1"
+                        android:background="@drawable/feedback_box"
                         android:layout_marginTop="2dp"
                         android:text="Nice Work Man ! appropriated it. Best of luck"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

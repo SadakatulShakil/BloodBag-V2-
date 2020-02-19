@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbagbb.Activity.CommunicationActivity;
-import com.example.bloodbagbb.Fragment.CommunicationFragment;
 import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 
@@ -56,21 +55,12 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
         holder.userContact.setText(contact);
         holder.userArea.setText(area);
 
-        final Fragment postChildFragment = new CommunicationFragment();
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*getChildFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayoutID, postChildFragment)
-                        .commit();*/
 
                 Intent intent = new Intent(context, CommunicationActivity.class);
                 intent.putExtra("donorInfo",donorInfo);
-                /*intent.putExtra("comEmail",email);
-                intent.putExtra("comDistrict",district);
-                intent.putExtra("comArea",area);
-                intent.putExtra("comContact",contact);*/
                 context.startActivity(intent);
             }
         });
