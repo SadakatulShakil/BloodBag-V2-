@@ -3,6 +3,8 @@
     <string name="butterfly_html">why_donate.html</string>
     <string name="about_html">about.html</string>
     <string name="feedBack">FeedBack</string>
+    <string name="manageDonor">Manage Donor</string>
+    <string name="addDonor">Adding Donor</string>
     <string name="admin">AdminPanel</string>
     <string name="about_us">Developer</string>
     <string name="new_butterfly_html">need_to_know.html</string>

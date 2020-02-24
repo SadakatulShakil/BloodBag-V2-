@@ -14,12 +14,15 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.CheckFeedBackActivity"></activity>
+        <activity android:name=".Activity.ManuallyAddDonorActivity"></activity>
+        <activity android:name=".Activity.ManageDonorActivity" />
+        <activity android:name=".Activity.CheckFeedBackActivity" />
         <activity android:name=".Activity.AboutUsActivity" />
         <activity android:name=".Activity.AdminActivity" />
         <activity android:name=".Activity.FeedBackActivity" />
         <activity android:name=".Activity.NeedToKnowActivity" />
         <activity android:name=".Activity.WhyDonateBloodActivity" />
+        <activity android:name=".Activity.DonorMaintainActivity" />
         <activity android:name=".Activity.AddHistoryActivity" />
         <activity android:name=".Activity.RequestFormActivity" />
         <activity android:name=".Activity.CommunicationActivity" />

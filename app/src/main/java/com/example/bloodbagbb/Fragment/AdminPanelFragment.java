@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.bloodbagbb.Activity.CheckFeedBackActivity;
+import com.example.bloodbagbb.Activity.FragmentMenuActivity;
+import com.example.bloodbagbb.Activity.ManageDonorActivity;
 import com.example.bloodbagbb.R;
 
 /**
@@ -45,8 +47,13 @@ public class AdminPanelFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
 
+        initView(view);
+        clickEvents();
+
+    }
+
+    private void clickEvents() {
         checkFeedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +62,33 @@ public class AdminPanelFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        manageDonor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Manage Donor Here!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ManageDonorActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        addDonor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Manually Add Donor Here!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Back to Home Here!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, FragmentMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initView(View view) {

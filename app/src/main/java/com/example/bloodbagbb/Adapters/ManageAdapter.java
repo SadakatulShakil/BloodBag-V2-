@@ -8,23 +8,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbagbb.Activity.CommunicationActivity;
+import com.example.bloodbagbb.Activity.DonorMaintainActivity;
 import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 
 import java.util.ArrayList;
 
-public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> {
-
-
+public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.viewHolder>{
     private Context context;
     private ArrayList<User> userArrayList;
 
 
-    public DonorAdapter(Context context, ArrayList<User> userArrayList) {
+    public ManageAdapter(Context context, ArrayList<User> userArrayList) {
         this.context = context;
         this.userArrayList = userArrayList;
 
@@ -32,14 +30,14 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
 
     @NonNull
     @Override
-    public DonorAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ManageAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.donor_list, parent, false);
-        return new viewHolder(v);
+        return new ManageAdapter.viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DonorAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ManageAdapter.viewHolder holder, int position) {
 
         final User donorInfo = userArrayList.get(position);
 
@@ -57,7 +55,7 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.viewHolder> 
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, CommunicationActivity.class);
+                Intent intent = new Intent(context, DonorMaintainActivity.class);
                 intent.putExtra("donorInfo",donorInfo);
                 context.startActivity(intent);
             }
