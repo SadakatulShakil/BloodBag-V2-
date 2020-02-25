@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.bloodbagbb.Activity.CheckFeedBackActivity;
 import com.example.bloodbagbb.Activity.FragmentMenuActivity;
 import com.example.bloodbagbb.Activity.ManageDonorActivity;
+import com.example.bloodbagbb.Activity.ManuallyAddDonorActivity;
 import com.example.bloodbagbb.R;
 
 /**
@@ -77,6 +78,8 @@ public class AdminPanelFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Manually Add Donor Here!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, ManuallyAddDonorActivity.class);
+                startActivity(intent);
 
             }
         });

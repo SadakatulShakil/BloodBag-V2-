@@ -31,7 +31,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +41,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -59,7 +56,7 @@ public class EditProfileFragment extends Fragment {
     private TextView saveImageBtn;
     private ImageView backToParent, uploadImage;
     private CircleImageView previewImage;
-    private EditText userNameTV, userBloodGrioupTV, userContactTV, userDistrictTV, userAreaTV, userEmailTV;
+    private EditText userNameTV, userBloodGroupTV, userContactTV, userDistrictTV, userAreaTV, userEmailTV;
     private User user;
     private Uri imageUri;
     private StorageTask uploadTask;
@@ -87,7 +84,7 @@ public class EditProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        donorRef = FirebaseDatabase.getInstance().getReference();
         storageReference = FirebaseStorage.getInstance().getReference("UploadImage");
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -226,7 +223,7 @@ public class EditProfileFragment extends Fragment {
 
         String newName = userNameTV.getText().toString().trim();
         String newEmail = userEmailTV.getText().toString().trim();
-        String newBloodGroup = userBloodGrioupTV.getText().toString().trim();
+        String newBloodGroup = userBloodGroupTV.getText().toString().trim();
         String newDistrict = userDistrictTV.getText().toString().trim();
         String newArea = userAreaTV.getText().toString().trim();
         String newContact = userContactTV.getText().toString().trim();
@@ -266,7 +263,7 @@ public class EditProfileFragment extends Fragment {
                     Log.d(TAG, "onDataChange: " + user.toString());
 
                     userNameTV.setText(user.getName());
-                    userBloodGrioupTV.setText(user.getBloodGroup());
+                    userBloodGroupTV.setText(user.getBloodGroup());
                     userContactTV.setText(user.getContact());
                     userEmailTV.setText(user.getEmail());
                     userDistrictTV.setText(user.getDistrict());
@@ -287,7 +284,7 @@ public class EditProfileFragment extends Fragment {
         btnUpdate = view.findViewById(R.id.upDateBTN);
         userNameTV = view.findViewById(R.id.userName);
         userEmailTV = view.findViewById(R.id.userEmail);
-        userBloodGrioupTV = view.findViewById(R.id.userBloodGroup);
+        userBloodGroupTV = view.findViewById(R.id.userBloodGroup);
         userDistrictTV = view.findViewById(R.id.userDistrict);
         userAreaTV = view.findViewById(R.id.userArea);
         userContactTV = view.findViewById(R.id.userContact);
