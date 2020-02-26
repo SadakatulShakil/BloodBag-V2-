@@ -42,6 +42,7 @@ public class ProfileFragment extends Fragment {
     private Context context;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference donorRef;
+    private DatabaseReference imageRef;
     private DatabaseReference historyRef;
     FirebaseUser firebaseUser;
     private User user;
@@ -77,7 +78,7 @@ public class ProfileFragment extends Fragment {
         Log.d(TAG, "onViewCreated: started");
 
         initView(view);
-        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        imageRef = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
 
@@ -104,7 +105,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void displayProfileImage() {
-        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+        final DatabaseReference displayUrl = imageRef.child("profileImages").child(userId);
 
         displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

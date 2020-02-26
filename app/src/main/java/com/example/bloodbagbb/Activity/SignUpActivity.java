@@ -54,9 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                onBackPressed();
             }
         });
 

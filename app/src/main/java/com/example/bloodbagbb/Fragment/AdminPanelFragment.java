@@ -70,7 +70,6 @@ public class AdminPanelFragment extends Fragment {
                 Toast.makeText(context, "Manage Donor Here!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ManageDonorActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -80,7 +79,6 @@ public class AdminPanelFragment extends Fragment {
                 Toast.makeText(context, "Manually Add Donor Here!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ManuallyAddDonorActivity.class);
                 startActivity(intent);
-
             }
         });
         backToHome.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +87,7 @@ public class AdminPanelFragment extends Fragment {
                 Toast.makeText(context, "Back to Home Here!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, FragmentMenuActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

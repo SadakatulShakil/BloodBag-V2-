@@ -37,6 +37,7 @@ public class SettingsFragment extends Fragment {
     private TextView viewProfileTV, viewPasswordTV, viewCurrentAddress, viewParmanentAddress;
     private ImageView backToParent;
     private DatabaseReference donorRef;
+    private DatabaseReference imageRef;
     private FirebaseAuth firebaseAuth;
     private String userId;
 
@@ -62,7 +63,7 @@ public class SettingsFragment extends Fragment {
 
         inItView(view);
 
-        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        imageRef = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
 
@@ -122,7 +123,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void displayProfileImage() {
-        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+        final DatabaseReference displayUrl = imageRef.child("profileImages").child(userId);
 
         displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

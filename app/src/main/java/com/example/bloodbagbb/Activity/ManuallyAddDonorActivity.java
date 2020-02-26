@@ -118,8 +118,7 @@ public class ManuallyAddDonorActivity extends AppCompatActivity {
     private void signUp(final String nameId, final String emailId, final String contactId, final String districtId,
                         final String areaId, final String bloodGroupId) {
         progressBar.setVisibility(View.VISIBLE);
-
-        String userId = firebaseAuth.getCurrentUser().getUid();
+        String userId = databaseReference.push().getKey();
         User user = new User(userId, nameId, emailId, contactId, districtId, areaId, bloodGroupId);
         DatabaseReference userRef = databaseReference.child("donor").child(userId);
         userRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

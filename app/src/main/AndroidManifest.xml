@@ -14,7 +14,8 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.ManuallyAddDonorActivity"></activity>
+        <activity android:name=".Activity.UserBioDataActivity"></activity>
+        <activity android:name=".Activity.ManuallyAddDonorActivity" />
         <activity android:name=".Activity.ManageDonorActivity" />
         <activity android:name=".Activity.CheckFeedBackActivity" />
         <activity android:name=".Activity.AboutUsActivity" />

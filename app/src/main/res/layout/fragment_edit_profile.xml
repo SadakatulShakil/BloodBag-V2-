@@ -64,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Image"
+            android:visibility="gone"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/textColor"
             android:textStyle="bold"

@@ -17,8 +17,15 @@ import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DonorMaintainActivity extends AppCompatActivity {
 
@@ -26,8 +33,10 @@ public class DonorMaintainActivity extends AppCompatActivity {
     private TextView comNameTV, comEmailTV, comAddressTV, comContact;
     private User user;
     private DatabaseReference databaseReference;
+    private DatabaseReference imageRef;
     private Button comMessageBt, comCallBt, comRemove;
     private ImageView back;
+    private CircleImageView profilePreview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +48,8 @@ public class DonorMaintainActivity extends AppCompatActivity {
 
         user = (User) intent.getSerializableExtra("donorInfo");
         databaseReference = FirebaseDatabase.getInstance().getReference().child("donor");
+
+        imageRef = FirebaseDatabase.getInstance().getReference();
 
         Log.d(TAG, "onCreate: " +user.toString());
         if(user!=null){
@@ -82,15 +93,36 @@ public class DonorMaintainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
+        displayProfileImage();
     }
 
+    private void displayProfileImage() {
+        final DatabaseReference displayUrl = imageRef.child("profileImages").child(user.getUserId());
+
+        displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap : dataSnapshot.getChildren()){
+                    String url = snap.getValue()+"";
+                    Log.d(TAG, "proImageUrl: " + url);
+
+                    Picasso.get().load(url).into(profilePreview);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     private void intItView() {
 
         comNameTV = findViewById(R.id.detailsWithName);
         comEmailTV = findViewById(R.id.detailsWithEmail);
         comAddressTV = findViewById(R.id.detailsWithAddress);
         comContact = findViewById(R.id.detailsWithContact);
+        profilePreview = findViewById(R.id.userProfileImage);
 
         comMessageBt = findViewById(R.id.messageBT);
         comCallBt = findViewById(R.id.callBT);

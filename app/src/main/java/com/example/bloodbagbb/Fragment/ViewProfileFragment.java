@@ -49,6 +49,7 @@ public class ViewProfileFragment extends Fragment {
     CircleImageView previewImage;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference donorRef;
+    private DatabaseReference imageRef;
     private DatabaseReference historyRef;
     FirebaseUser firebaseUser;
     private ImageView backToParent;
@@ -76,7 +77,7 @@ public class ViewProfileFragment extends Fragment {
         userInfo = new ArrayList<>();
         inItView(view);
 
-        donorRef = FirebaseDatabase.getInstance().getReference().child("donor");
+        imageRef = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
 
@@ -103,7 +104,7 @@ public class ViewProfileFragment extends Fragment {
     }
 
     private void displayProfileImage() {
-        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+        final DatabaseReference displayUrl = imageRef.child("profileImages").child(userId);
 
         displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

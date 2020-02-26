@@ -20,6 +20,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,8 +64,10 @@ public class EditProfileFragment extends Fragment {
     private String userId;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference donorRef;
+    private DatabaseReference imageRef;
     private StorageReference storageReference;
-    FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUser;
+    private ProgressBar progressBar;
     public EditProfileFragment() {
         // Required empty public constructor
     }
@@ -84,7 +87,7 @@ public class EditProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        donorRef = FirebaseDatabase.getInstance().getReference();
+        imageRef = FirebaseDatabase.getInstance().getReference();
         storageReference = FirebaseStorage.getInstance().getReference("UploadImage");
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -101,8 +104,7 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void displayProfileImage() {
-
-        final DatabaseReference displayUrl = donorRef.child("ProfileImages").child(userId);
+        final DatabaseReference displayUrl = imageRef.child("profileImages").child(userId);
 
         displayUrl.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -176,6 +178,7 @@ public class EditProfileFragment extends Fragment {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             Picasso.get().load(imageUri).into(previewImage);
+            saveImageBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -186,18 +189,21 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void uploadImageToStorage() {
+
+        progressBar.setVisibility(View.VISIBLE);
         final StorageReference storeRef = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
         storeRef.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(context, "Successfully stored this Image !", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
 
                         storeRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                String upId = donorRef.push().getKey();
-                                donorRef.child("ProfileImages").child(userId).child(upId).setValue(uri.toString());
+                                String upId = imageRef.push().getKey();
+                                imageRef.child("profileImages").child(userId).child(upId).setValue(uri.toString());
                                 //Picasso.get().load(uri.toString()).into(dUserImage);
                             }
                         });
@@ -209,6 +215,7 @@ public class EditProfileFragment extends Fragment {
                         // Handle unsuccessful uploads
                         // ...
                         Toast.makeText(context, "Successfully NOT stored this Image !", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }
@@ -287,6 +294,7 @@ public class EditProfileFragment extends Fragment {
         userBloodGroupTV = view.findViewById(R.id.userBloodGroup);
         userDistrictTV = view.findViewById(R.id.userDistrict);
         userAreaTV = view.findViewById(R.id.userArea);
+        progressBar= view.findViewById(R.id.progressBar);
         userContactTV = view.findViewById(R.id.userContact);
         backToParent = view.findViewById(R.id.arrow);
         uploadImage = view.findViewById(R.id.uploadImage);
