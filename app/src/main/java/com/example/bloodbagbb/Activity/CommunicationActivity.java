@@ -76,6 +76,7 @@ public class CommunicationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunicationActivity.this, UserBioDataActivity.class);
+                intent.putExtra("donorInfo",user);
                 startActivity(intent);
             }
         });

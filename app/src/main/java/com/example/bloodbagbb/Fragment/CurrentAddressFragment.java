@@ -14,8 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bloodbagbb.Model.CurrentAddress;
+import com.example.bloodbagbb.Model.User;
 import com.example.bloodbagbb.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +34,9 @@ public class CurrentAddressFragment extends Fragment {
     private TextView districtTV, areaTV, houseTV, roadTV, flatTV;
     private FloatingActionButton addHomeBTN;
     private ImageView back;
+    private DatabaseReference currentAddressRef;
+    private FirebaseAuth firebaseAuth;
+    private String userId;
     public CurrentAddressFragment() {
         // Required empty public constructor
     }
@@ -46,11 +57,14 @@ public class CurrentAddressFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         inItView(view);
-        getNewDataPassing();
+
         addHomeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passOldDataToEditAddress();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new AddCurrentAddressFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -62,48 +76,35 @@ public class CurrentAddressFragment extends Fragment {
                         .commit();
             }
         });
+
+        getCurrentAddressInfo();
     }
 
-    private void getNewDataPassing() {
+    private void getCurrentAddressInfo() {
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String newDistrict = bundle.getString("NewDistrict");
-            String newArea = bundle.getString("NewArea");
-            String newHouse = bundle.getString("NewHouse");
-            String newRoad = bundle.getString("NewRoad");
-            String newFlat = bundle.getString("NewFlat");
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
+        currentAddressRef = FirebaseDatabase.getInstance().getReference().child("address").child(userId);
+        currentAddressRef.child("currentAddress").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               if(dataSnapshot.exists()){
+                    CurrentAddress currentAddressInfo = dataSnapshot.getValue(CurrentAddress.class);
+                    districtTV.setText(currentAddressInfo.getDistrict());
+                    areaTV.setText(currentAddressInfo.getArea());
+                    houseTV.setText(currentAddressInfo.getHouseNo());
+                    roadTV.setText(currentAddressInfo.getRoadNo());
+                    flatTV.setText(currentAddressInfo.getFlatNo());
+                }
+            }
 
-            districtTV.setText(newDistrict);
-            areaTV.setText(newArea);
-            houseTV.setText(newHouse);
-            roadTV.setText(newRoad);
-            flatTV.setText(newFlat);
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    private void passOldDataToEditAddress() {
-
-        String oldDistrict = districtTV.getText().toString().trim();
-        String oldArea = areaTV.getText().toString().trim();
-        String oldHouse = houseTV.getText().toString().trim();
-        String oldRoad = roadTV.getText().toString().trim();
-        String oldFlat = flatTV.getText().toString().trim();
-
-        Fragment fragment = new AddCurrentAddressFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString("OldDistrict", oldDistrict);
-        bundle.putString("OldArea", oldArea);
-        bundle.putString("OldHouse", oldHouse);
-        bundle.putString("OldRoad", oldRoad);
-        bundle.putString("OldFlat", oldFlat);
-
-        fragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutID, fragment)
-                .commit();
-    }
 
     private void inItView(View view) {
         districtTV = view.findViewById(R.id.cDistrict);

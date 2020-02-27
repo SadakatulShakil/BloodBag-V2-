@@ -95,12 +95,13 @@
                     android:text="Email :" />
 
                 <TextView
+                    android:id="@+id/userEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
                     android:textColor="@color/red"
-                    android:text="astronist@gmail.com"
+                    tools:text="astronist@gmail.com"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
@@ -112,11 +113,12 @@
                     android:text="Contact :" />
 
                 <TextView
+                    android:id="@+id/userContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="01751330394"
+                    tools:text="01751330394"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/red" />
 
@@ -129,11 +131,12 @@
                     android:text="Blood group :" />
 
                 <TextView
+                    android:id="@+id/userBloodGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:text="AB+"
+                    tools:text="AB+"
                     android:textColor="@color/red"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </LinearLayout>
@@ -169,12 +172,13 @@
                         android:text="District :" />
 
                     <TextView
+                        android:id="@+id/cDistrict"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="Rangpur"
+                        tools:text="Rangpur"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -193,12 +197,13 @@
                         android:text="Area :" />
 
                     <TextView
+                        android:id="@+id/cArea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/red"
                         android:padding="5dp"
-                        android:text="Pirgaccha"
+                        tools:text="Pirgaccha"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -216,12 +221,13 @@
                         android:text="House no :" />
 
                     <TextView
+                        android:id="@+id/cHouseNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="68/A"
+                        tools:text="68/A"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -239,12 +245,13 @@
                         android:text="Road no :" />
 
                     <TextView
+                        android:id="@+id/cRoadNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="5/A"
+                        tools:text="5/A"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -263,12 +270,13 @@
                         android:text="Flat no :" />
 
                     <TextView
+                        android:id="@+id/cFlatNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:text="1/A"
-                        android:textColor="@color/red"
+                        tools:textColor="@color/red"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -306,12 +314,13 @@
                         android:text="Division :" />
 
                     <TextView
+                        android:id="@+id/pDivision"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="Rangpur"
+                        tools:text="Rangpur"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -330,11 +339,12 @@
                         android:text="District :" />
 
                     <TextView
+                        android:id="@+id/pDistrict"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
-                        android:text="Rangpur"
+                        tools:text="Rangpur"
                         android:textColor="@color/red"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -353,12 +363,13 @@
                         android:text="Upazilla :" />
 
                     <TextView
+                        android:id="@+id/pUpazilla"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="Pirgachha"
+                        tools:text="Pirgachha"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -376,12 +387,13 @@
                         android:text="Village :" />
 
                     <TextView
+                        android:id="@+id/pVillage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:textColor="@color/red"
-                        android:text="BoroHayat khan"
+                        tools:text="BoroHayat khan"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>
@@ -399,12 +411,13 @@
                         android:text="Post-Office :" />
 
                     <TextView
+                        android:id="@+id/pPostOffice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/red"
                         android:padding="5dp"
-                        android:text="Sundar"
+                        tools:text="Sundar"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 </LinearLayout>

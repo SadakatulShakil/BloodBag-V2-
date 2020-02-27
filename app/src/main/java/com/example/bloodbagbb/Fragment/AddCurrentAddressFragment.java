@@ -14,9 +14,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bloodbagbb.Model.CurrentAddress;
 import com.example.bloodbagbb.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +33,9 @@ public class AddCurrentAddressFragment extends Fragment {
     private Context context;
     private TextView districtET, areaET, houseET, roadET, flatET;
     private Button addHomeBTN;
+    private DatabaseReference addressRef;
+    private FirebaseAuth firebaseAuth;
+    private String userId;
     private ImageView back;
 
     public AddCurrentAddressFragment() {
@@ -48,7 +59,6 @@ public class AddCurrentAddressFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         inItView(view);
 
-        getOldDataPassing();
         clickEvents();
     }
 
@@ -56,7 +66,10 @@ public class AddCurrentAddressFragment extends Fragment {
         addHomeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateDataPassing();
+                UploadAddress();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new CurrentAddressFragment())
+                        .commit();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -69,45 +82,29 @@ public class AddCurrentAddressFragment extends Fragment {
         });
     }
 
-    private void updateDataPassing() {
-
-        String newDistrict = districtET.getText().toString().trim();
-        String newArea = areaET.getText().toString().trim();
-        String newHouse = houseET.getText().toString().trim();
-        String newRoad = roadET.getText().toString().trim();
-        String newFlat = flatET.getText().toString().trim();
-
-        Fragment fragment = new CurrentAddressFragment();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("NewDistrict", newDistrict);
-        bundle.putString("NewArea", newArea);
-        bundle.putString("NewHouse", newHouse);
-        bundle.putString("NewRoad", newRoad);
-        bundle.putString("NewFlat", newFlat);
-
-        fragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutID, fragment)
-                .commit();
+    private void UploadAddress() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
+        addressRef = FirebaseDatabase.getInstance().getReference().child("address").child(userId);
+        CurrentAddress currentAddress = new CurrentAddress(userId, districtET.getText().toString().trim(),
+                areaET.getText().toString().trim(), houseET.getText().toString().trim(),
+                roadET.getText().toString().trim(), flatET.getText().toString().trim());
+        addressRef.child("currentAddress").setValue(currentAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "Successfully Upload address !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void getOldDataPassing() {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String oldDistrict = bundle.getString("OldDistrict");
-            String oldArea = bundle.getString("OldArea");
-            String oldHouse = bundle.getString("OldHouse");
-            String oldRoad = bundle.getString("OldRoad");
-            String oldFlat = bundle.getString("OldFlat");
 
-            districtET.setText(oldDistrict);
-            areaET.setText(oldArea);
-            houseET.setText(oldHouse);
-            roadET.setText(oldRoad);
-            flatET.setText(oldFlat);
-        }
-    }
 
     private void inItView(View view) {
 

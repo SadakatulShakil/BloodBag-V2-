@@ -13,8 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bloodbagbb.Model.CurrentAddress;
+import com.example.bloodbagbb.Model.PermanentAddress;
 import com.example.bloodbagbb.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +33,9 @@ public class ParmanentAddressFragment extends Fragment {
     private TextView divisiontTV, districtTV, upazillaTV, villageTV, postOfficeTV;
     private FloatingActionButton addHomeBTN;
     private ImageView back;
+    private DatabaseReference currentAddressRef;
+    private FirebaseAuth firebaseAuth;
+    private String userId;
 
     public ParmanentAddressFragment() {
         // Required empty public constructor
@@ -46,8 +57,6 @@ public class ParmanentAddressFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         inItView(view);
-        getNewDataPassing();
-
         clickEvents();
     }
 
@@ -55,7 +64,10 @@ public class ParmanentAddressFragment extends Fragment {
         addHomeBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passOldDataToEditAddress();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayoutID, new AddParmanentAddressFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -67,48 +79,33 @@ public class ParmanentAddressFragment extends Fragment {
                         .commit();
             }
         });
+        getCurrentAddressInfo();
     }
 
-    private void getNewDataPassing() {
+    private void getCurrentAddressInfo() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        userId = firebaseAuth.getCurrentUser().getUid();
+        currentAddressRef = FirebaseDatabase.getInstance().getReference().child("address").child(userId);
+        currentAddressRef.child("permanentAddress").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    PermanentAddress permanentAddressInfo = dataSnapshot.getValue(PermanentAddress.class);
+                    divisiontTV.setText(permanentAddressInfo.getDivision());
+                    districtTV.setText(permanentAddressInfo.getDistrict());
+                    upazillaTV.setText(permanentAddressInfo.getUpazilla());
+                    villageTV.setText(permanentAddressInfo.getVillage());
+                    postOfficeTV.setText(permanentAddressInfo.getPost_office());
+                }
+            }
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String newDistrict = bundle.getString("NewDistrict");
-            String newArea = bundle.getString("NewArea");
-            String newHouse = bundle.getString("NewHouse");
-            String newRoad = bundle.getString("NewRoad");
-            String newFlat = bundle.getString("NewFlat");
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            divisiontTV.setText(newDistrict);
-            districtTV.setText(newArea);
-            upazillaTV.setText(newHouse);
-            villageTV.setText(newRoad);
-            postOfficeTV.setText(newFlat);
-        }
+            }
+        });
     }
 
-    private void passOldDataToEditAddress() {
-
-        String oldDivision = divisiontTV.getText().toString().trim();
-        String oldDistrict = districtTV.getText().toString().trim();
-        String oldUpazilla = upazillaTV.getText().toString().trim();
-        String oldVillage = villageTV.getText().toString().trim();
-        String oldPostOffice = postOfficeTV.getText().toString().trim();
-
-        Fragment fragment = new AddParmanentAddressFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putString("OldDivision", oldDivision);
-        bundle.putString("OldDistrict", oldDistrict);
-        bundle.putString("OldUpazilla", oldUpazilla);
-        bundle.putString("OldVillage", oldVillage);
-        bundle.putString("OldPostOffice", oldPostOffice);
-
-        fragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayoutID, fragment)
-                .commit();
-    }
     private void inItView(View view) {
 
         divisiontTV = view.findViewById(R.id.pDivision);

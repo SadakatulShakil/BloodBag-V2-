@@ -20,118 +20,145 @@
         android:layout_marginTop="5dp"
         android:layout_below="@+id/arrow"
         android:src="@drawable/home"/>
+<TextView
+    android:id="@+id/cDemo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Current Address :"
+    android:layout_marginLeft="10dp"
+    android:layout_below="@+id/backIcon"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    android:textColor="@color/red"
+    android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/backIcon"
+        android:layout_below="@+id/cDemo"
         android:layout_margin="10dp"
+        android:background="@drawable/background_btn"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="District:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/cDistrict"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black"
-            android:text="e.g. Dhaka"
-            android:padding="8dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="District:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Area:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/cArea"
+            <TextView
+                android:id="@+id/cDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:text="e.g. Dhaka"
+                android:padding="8dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black"
-            android:text="e.g. Jigatala"
-            android:padding="8dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Area:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="House No:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/cHouseNo"
+            <TextView
+                android:id="@+id/cArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:text="e.g. Jigatala"
+                android:padding="8dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:padding="8dp"
-            android:text="e.g. 75/G"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="House No:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Road No:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/cRoadNo"
+            <TextView
+                android:id="@+id/cHouseNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:padding="8dp"
+                android:text="e.g. 75/G"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/black"
-            android:text="e.g. Dhanmondi-5A"
-            android:padding="8dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Road No:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Flat No:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/cFlatNo"
+            <TextView
+                android:id="@+id/cRoadNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:text="e.g. Dhanmondi-5A"
+                android:padding="8dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_edittext"
-            android:drawablePadding="20dp"
-            android:ems="10"
-            android:textColor="@color/black"
-            android:text="e.g. 1A"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:padding="8dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Flat No:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cFlatNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:text="e.g. 1A"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:padding="8dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
