@@ -167,8 +167,8 @@ public class EditProfileFragment extends Fragment {
 
     private void openFileChooser() {
 
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
         startActivityForResult(intent, 1);
     }
 
@@ -177,6 +177,7 @@ public class EditProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
+            Log.d(TAG, "onActivityResult: " +imageUri);
             Picasso.get().load(imageUri).into(previewImage);
             saveImageBtn.setVisibility(View.VISIBLE);
         }
@@ -192,6 +193,7 @@ public class EditProfileFragment extends Fragment {
 
         progressBar.setVisibility(View.VISIBLE);
         final StorageReference storeRef = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+        Log.d(TAG, "uploadImageToStorage: "+storeRef.toString());
         storeRef.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override

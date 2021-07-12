@@ -75,12 +75,6 @@ public class DonorMenuFragment extends Fragment {
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        /*if(bucketFragment.equals("empty")){
-            initBottomNavigation();
-        }
-        else{
-            initBottomNavigation(bucketFragment);
-        }*/
         initBottomNavigation();
         initNavigationViewDrawer();
 

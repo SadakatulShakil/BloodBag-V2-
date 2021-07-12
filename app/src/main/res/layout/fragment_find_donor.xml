@@ -26,7 +26,10 @@
             android:drawableRight="@drawable/search"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="search through districts! e.g.Dhaka"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
+            android:hint="search districts! e.g.Dhaka"
             android:imeOptions="actionNext"
             android:inputType="textAutoComplete"
             android:padding="10dp" />
@@ -41,10 +44,12 @@
             android:background="@drawable/background_edittext"
             android:drawableRight="@drawable/drop"
             android:drawablePadding="5dp"
-            android:padding="6dp"
+            android:padding="5dp"
             android:text="filter"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red" />
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -56,8 +61,10 @@
         android:layout_margin="5dp"
         android:text="Search Result :"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/mukti"
+        android:letterSpacing=".1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.050"
         app:layout_constraintStart_toStartOf="parent"

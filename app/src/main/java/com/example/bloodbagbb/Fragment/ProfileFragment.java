@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +49,7 @@ public class ProfileFragment extends Fragment {
     private User user;
     private String userId;
     CircleImageView profileImage;
-    private CardView cardForWhyDonate, cardForNeedToKnow;
+    private LinearLayout cardForWhyDonate, cardForNeedToKnow;
     private int listSize;
     private ArrayList<History>historyArrayList;
 
@@ -143,7 +144,7 @@ public class ProfileFragment extends Fragment {
                 }
                 listSize = historyArrayList.size();
                 Log.d(TAG, "size: "+listSize);
-                countingDonation.setText(listSize + " times");
+                countingDonation.setText(listSize+"");
             }
 
             @Override

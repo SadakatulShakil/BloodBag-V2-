@@ -12,12 +12,16 @@
         android:id="@+id/searchRequestBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/background_edittext"
         android:drawableRight="@drawable/search"
         android:drawablePadding="20dp"
         android:ems="10"
-        android:hint="search through districts! e.g.Dhaka"
+        android:fontFamily="@font/mukti"
+        android:letterSpacing=".1"
+        android:hint="search districts! e.g.Dhaka"
         android:imeOptions="actionNext"
         android:inputType="textAutoComplete"
         android:padding="10dp" />
@@ -33,27 +37,31 @@
             android:id="@+id/filterEmergency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:layout_weight="1"
             android:background="@drawable/background_edittext"
             android:drawableRight="@drawable/emergency"
             android:padding="6dp"
             android:text="Emergency"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red" />
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/filterNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:layout_weight="1"
             android:background="@drawable/background_edittext"
             android:drawableRight="@drawable/normal"
             android:padding="6dp"
             android:text="Normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red" />
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,8 +79,10 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="All Blood Request :"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/red"
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -83,10 +93,12 @@
             android:background="@drawable/background_edittext"
             android:drawableRight="@drawable/drop"
             android:drawablePadding="10dp"
-            android:padding="6dp"
+            android:padding="5dp"
+            android:fontFamily="@font/mukti"
+            android:letterSpacing=".1"
             android:text="All"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/red" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
