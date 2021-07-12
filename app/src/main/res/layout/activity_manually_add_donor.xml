@@ -53,10 +53,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/view1"
             android:layout_margin="15dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/logo">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
